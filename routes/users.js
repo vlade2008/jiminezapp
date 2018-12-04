@@ -3,11 +3,13 @@ var express = require('express');
 var router  = express.Router();
 
 router.post('/create', function(req, res) {
-  models.User.create({
-    username: req.body.username
-  }).then(function() {
-    res.redirect('/');
-  });
+  // models.User.create({
+  //   username: req.body.username
+  // }).then(function(data) {
+  //   res.json(data)
+  // });
+
+  res.json(req.body.username)
 });
 
 router.get('/:user_id/destroy', function(req, res) {
