@@ -1,7 +1,8 @@
 /*eslint-disable */
 
 import React from 'react'
-import { Modal, Button } from 'antd';
+import { Modal, Button,Input, Form, DatePicker  } from 'antd';
+const FormItem = Form.Item;
 
 class NewPatient extends React.Component {
     render(){
@@ -18,9 +19,25 @@ class NewPatient extends React.Component {
             </Button>,
           ]}
           >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+          <Form layout="horizontal">
+            <FormItem label="Name">
+              <Input value={this.props.name} onChange={((e)=>this.props.handleChange('name',e.target.value))}
+              />
+            </FormItem>
+            <FormItem label="Address">
+              <Input value={this.props.address} onChange={((e)=>this.props.handleChange('address',e.target.value))}
+              />
+            </FormItem>
+            <FormItem label="Contact Number">
+              <Input value={this.props.contactnumber} onChange={((e)=>this.props.handleChange('contactnumber',e.target.value))}
+              />
+            </FormItem>
+            <FormItem label="Birthdate">
+              <DatePicker onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
+              />
+            </FormItem>
+          </Form>
+
           </Modal>
         );
     }

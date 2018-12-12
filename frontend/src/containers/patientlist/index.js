@@ -70,6 +70,12 @@ class PatientList extends React.Component {
       })
     }
 
+    handleChange = (name,value) => {
+        this.setState({
+          [name]: value,
+        })
+    }
+
     render(){
         return (
           <Card title={
@@ -87,7 +93,12 @@ class PatientList extends React.Component {
 
             {
               this.state.isPatientModal ? (
-                <NewPatient visible={this.state.isPatientModal} onCloseModal={this.onCloseModal} />
+                <NewPatient
+                  handleChange={this.handleChange}
+                  visible={this.state.isPatientModal}
+                  onCloseModal={this.onCloseModal}
+                  {...this.state}
+                />
               ) : null
             }
 
