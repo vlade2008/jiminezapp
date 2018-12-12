@@ -1,8 +1,10 @@
 /*eslint-disable */
 
 import React from 'react'
-import { Table, Divider, Tag, Card, Input } from 'antd';
+import { Table, Divider, Tag, Card, Input, Button } from 'antd';
 import {  withRouter } from 'react-router-dom';
+
+import NewPatient from '../newpatient';
 
 const columns = [{
   title: 'Name',
@@ -48,8 +50,24 @@ const data = [{
 
 class PatientList extends React.Component {
 
+  state = {
+    isPatientModal: false,
+  }
+
     onPatientView = (data) => {
       this.props.history.push(`/patient/${data.id}`);
+    }
+
+    onCloseModal = () => {
+      this.setState({
+        isPatientModal: false,
+      })
+    }
+
+    onOpenModal = () => {
+      this.setState({
+        isPatientModal: true,
+      })
     }
 
     render(){
@@ -58,6 +76,7 @@ class PatientList extends React.Component {
             <h1>Patient List</h1>
           }>
             <Input style={{ width: 300, marginBottom: 20 }} placeholder="Seach Name Patient" />
+            <Button onClick={this.onOpenModal} type='primary'>New Patient</Button>
             <Table
               onRow={(record) => {
                 return {
@@ -65,6 +84,13 @@ class PatientList extends React.Component {
                 };
               }}
             columns={columns} dataSource={data} />
+
+            {
+              this.state.isPatientModal ? (
+                <NewPatient visible={this.state.isPatientModal} onCloseModal={this.onCloseModal} />
+              ) : null
+            }
+
           </Card>
         );
     }

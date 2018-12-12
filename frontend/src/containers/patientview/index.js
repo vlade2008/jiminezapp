@@ -54,9 +54,15 @@ class PatientView extends React.Component {
       isOrder: !this.state.isOrder,
     })
   }
+
+  onBackPatientList = () => {
+    this.props.history.push(`/`);
+  }
+
     render(){
         return (
           <Card>
+          <Button type={'dashed'} onClick={this.onBackPatientList}>Got Back Patient List</Button>
           <Row>
             <Col span={24}>
               <h1 style={{marginBottom:5}}>Christian John Saclao</h1>
@@ -68,7 +74,7 @@ class PatientView extends React.Component {
           <Row>
             <Col style={{textAlign:'left',marginBottom:10}} span={4}>
               <Button onClick={this.onNewOrder} block size="large" type={this.state.isOrder ? 'danger' : 'primary'}>
-              { this.state.isOrder ? 'Back' : 'New Order'}
+              { this.state.isOrder ? 'View Order' : 'New Order'}
               </Button>
             </Col>
           </Row>
