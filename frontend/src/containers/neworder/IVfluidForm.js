@@ -68,6 +68,7 @@ class IVfluidForm extends React.Component {
                <Option value="PRN">PRN</Option>
             </Select>
           </FormItem>
+          <br/>
           {
             this.props.selectmedicine ? <Button onClick={this.props.onAddOrderIvFluid} type={'primary'}>+Add Medicine</Button> : null
           }

@@ -46,7 +46,7 @@ const data = [{
 class PatientView extends React.Component {
 
   state = {
-    isOrder: true,
+    isOrder: false,
   }
 
   onNewOrder = () => {

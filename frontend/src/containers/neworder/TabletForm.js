@@ -86,6 +86,7 @@ class TabletForm extends React.Component {
                <Option value="PRN">PRN</Option>
             </Select>
           </FormItem>
+          <br/>
           {
             this.props.selectmedicine ? <Button onClick={this.props.onAddOrder} type={'primary'}>+Add Medicine</Button> : null
           }

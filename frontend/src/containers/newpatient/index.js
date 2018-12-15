@@ -2,14 +2,15 @@
 
 import React from 'react'
 import { Modal, Button,Input, Form, DatePicker  } from 'antd';
+import moment from 'moment';
 const FormItem = Form.Item;
 
 class NewPatient extends React.Component {
     render(){
-      const { visible, onCloseModal, } = this.props;
+      const { visible, onCloseModal, id } = this.props;
         return (
           <Modal
-            title="New Patient"
+            title={id ? 'Edit Patient' : 'New Patient'}
             visible={visible}
             onCancel={onCloseModal}
             footer={[
@@ -29,11 +30,11 @@ class NewPatient extends React.Component {
               />
             </FormItem>
             <FormItem label="Contact Number">
-              <Input value={this.props.contactnumber} onChange={((e)=>this.props.handleChange('contactnumber',e.target.value))}
+              <Input value={this.props.contact_number} onChange={((e)=>this.props.handleChange('contact_number',e.target.value))}
               />
             </FormItem>
             <FormItem label="Birthdate">
-              <DatePicker onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
+              <DatePicker format="YYYY-MM-DD" value={this.props.birthdate ? moment(this.props.birthdate,'YYYY-MM-DD') : null} onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
               />
             </FormItem>
           </Form>
