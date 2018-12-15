@@ -17,7 +17,18 @@ router.get('/get', function (req, res) {
     models.Patient.findAll().then(function (data) {
         res.json(data)
     });
+})
 
+router.post('/getSearch', function (req, res) {
+    models.Patient.findAll({
+        where: {
+            name: {
+                like: `%${req.body.name}%`
+            }
+        }
+    }).then(function (data) {
+        res.json(data)
+    });
 })
 
 router.get('/getPatientAndOrder', function (req, res){
