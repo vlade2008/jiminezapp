@@ -10,6 +10,8 @@ var users  = require('./routes/users');
 var medicines = require('./routes/medicines');
 var patients = require('./routes/patients');
 var orders = require('./routes/orders');
+var templates = require('./routes/templates');
+var cors = require('cors');
 var app = express();
 
 // view engine setup
@@ -18,6 +20,7 @@ app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +32,7 @@ app.use('/users', users);
 app.use('/medicines', medicines);
 app.use('/patients', patients);
 app.use('/orders', orders);
+app.use('/templates',templates);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

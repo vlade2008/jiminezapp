@@ -7,35 +7,26 @@ import moment from 'moment';
 
 import NewPatient from '../newpatient';
 
+import { getPatientList } from '../../actions/patient';
 const confirm = Modal.confirm;
-
-const data = [{
-  key: '1',
-  id: '1',
-  name: 'John Brown',
-  birthdate: moment().format('YYYY-MM-DD'),
-  address: 'New York No. 1 Lake Park',
-  contact_number: '09102030405',
-}, {
-  key: '2',
-  id: '2',
-  name: 'Jim Green',
-  birthdate: moment().format('YYYY-MM-DD'),
-  address: 'London No. 1 Lake Park',
-  contact_number: '09102030405',
-}, {
-  key: '3',
-  id: '3',
-  name: 'Joe Black',
-  birthdate: moment().format('YYYY-MM-DD'),
-  address: 'Sidney No. 1 Lake Park',
-  contact_number: '09102030405',
-}];
 
 class PatientList extends React.Component {
 
   state = {
     isPatientModal: false,
+    patientList: [],
+  }
+
+  componentWillMount(){
+    this.fetchPatientList();
+  }
+
+  fetchPatientList = () => {
+    getPatientList( (response) => {
+      this.setState({
+        patientList: response.data || []
+      })
+    })
   }
 
     onPatientView = (data) => {
@@ -120,6 +111,12 @@ class PatientList extends React.Component {
           </span>
         ),
       }];
+
+      let data = this.state.patientList.map((item,i)=>{
+        item.key = i
+        return item;
+      })
+
         return (
           <Card title={
             <h1>Patient List</h1>

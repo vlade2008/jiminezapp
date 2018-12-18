@@ -44,7 +44,8 @@ class NewOrder extends React.Component {
   onAddOrder = () => {
     const { selectmedicine, howmany, route, strength, formunit, frequency,
     doses, whentogive, order } = this.state;
-    const newOrder = `Take ${howmany} ${selectmedicine} ${strength} ${formunit} ${frequency} ${route} ${whentogive} x${doses} doses`
+    const strDoses = doses ? `x${doses} doses` : '';
+    const newOrder = `Take ${howmany || ''} ${selectmedicine || ''} ${strength || ''} ${formunit || ''} ${frequency || ''} ${route || ''} ${whentogive || ''} ${strDoses}`
     let mergeoOrder = `${order} \n ${newOrder}`;
     this.setState({
       order: mergeoOrder,
@@ -61,7 +62,7 @@ class NewOrder extends React.Component {
 
   onAddOrderIvFluid = () => {
     const { selectmedicine, volume, unitofmeasure, flowrate, flowunit, order, whentogive } = this.state;
-    const newOrder = `Start IVF at ${volume} ${unitofmeasure} ${selectmedicine} at ${flowrate} ${flowunit} ${whentogive}`
+    const newOrder = `Start IVF at ${volume || ''} ${unitofmeasure || ''} ${selectmedicine || ''} at ${flowrate || ''} ${flowunit || ''} ${whentogive || ''}`
     let mergeoOrder = `${order} \n ${newOrder}`;
     this.setState({
       order: mergeoOrder,

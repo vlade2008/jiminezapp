@@ -50,7 +50,10 @@ router.post('/update', function (req, res) {
                 id: req.body.id
             }
         }).then(function (data) {
-            res.json(data)
+            var result = {
+                status: 'Success'
+            }
+            res.json(result)
         })
 })
 
