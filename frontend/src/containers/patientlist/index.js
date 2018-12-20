@@ -4,18 +4,30 @@ import React from 'react'
 import { Table, Divider, Tag, Card, Input, Button, Modal } from 'antd';
 import {  withRouter } from 'react-router-dom';
 import moment from 'moment';
+import update from 'react-addons-update';
+import _ from 'lodash';
 
 import NewPatient from '../newpatient';
 
-import { getPatientList } from '../../actions/patient';
+import { getPatientList, upsertPatient, deletePatient, getSearchPatient } from '../../actions/patient';
 const confirm = Modal.confirm;
 
 class PatientList extends React.Component {
+  constructor(props){
+    super(props);
 
-  state = {
-    isPatientModal: false,
-    patientList: [],
+    this.state = {
+      isPatientModal: false,
+      patientList: [],
+      activeRecord:{},
+      searchPatient: '',
+    }
+
+    this.onSearchPatientList = _.debounce(this.onSearchPatientList,100)
+
   }
+
+
 
   componentWillMount(){
     this.fetchPatientList();
@@ -24,9 +36,24 @@ class PatientList extends React.Component {
   fetchPatientList = () => {
     getPatientList( (response) => {
       this.setState({
-        patientList: response.data || []
+        patientList: response.data || [],
+        activeRecord: {},
+
       })
     })
+  }
+
+  onSearchPatientList = (value) =>{
+    this.setState({
+      searchPatient: value,
+    },()=>{
+      getSearchPatient(value,(response) => {
+        this.setState({
+          patientList: response.data,
+        })
+      })
+    })
+
   }
 
     onPatientView = (data) => {
@@ -48,9 +75,15 @@ class PatientList extends React.Component {
     }
 
     handleChange = (name,value) => {
-        this.setState({
-          [name]: value,
-        })
+      const payload = {
+        [name]: value
+      }
+      let newUpdate = update(this.state.activeRecord,{
+        $merge: payload
+      })
+      this.setState({
+        activeRecord:newUpdate
+      })
     }
 
     onSettings = () => {
@@ -60,7 +93,9 @@ class PatientList extends React.Component {
     onHandleEdit = (data) =>{
       return ()=>{
         this.setState({
-          ...data,
+          activeRecord: {
+            ...data,
+          },
           isPatientModal:true,
         })
       }
@@ -72,13 +107,23 @@ class PatientList extends React.Component {
           title: 'Do you Want to delete these patient?',
           content: data.name,
           onOk() {
-            console.log('OK');
+            deletePatient(data.id,()=> {
+              this.fetchPatientList()
+            })
           },
           onCancel() {
             console.log('Cancel');
           },
         });
       }
+    }
+
+    onSubmit = () => {
+      const payload = this.state.activeRecord;
+      upsertPatient(payload,(response)=>{
+        this.fetchPatientList()
+        this.onCloseModal();
+      })
     }
 
     render(){
@@ -92,8 +137,14 @@ class PatientList extends React.Component {
         key: 'address',
       }, {
         title: 'Birthdate (YYYY-MM-DD)',
-        dataIndex: 'birthdate',
         key: 'birthdate',
+        render: (text, record) => {
+          return (
+            <span>
+              {moment(record.birthdate).format('YYYY-MM-DD')}
+            </span>
+          )
+        }
       }, {
         title: 'Contact Number',
         key: 'contact_number',
@@ -125,7 +176,13 @@ class PatientList extends React.Component {
              <Button onClick={this.onSettings}>Settings</Button>
            }
           >
-            <Input style={{ width: 300, marginBottom: 20 }} placeholder="Seach Name Patient" />
+            <Input
+              style={{ width: 300, marginBottom: 20 }}
+              placeholder="Seach Name Patient"
+              value={this.state.searchPatient}
+              onChange={(e)=>{this.onSearchPatientList(e.target.value)}}
+
+            />
             <Button onClick={this.onOpenModal} type='primary'>New Patient</Button>
             <Table columns={columns} dataSource={data} />
 
@@ -135,6 +192,7 @@ class PatientList extends React.Component {
                   handleChange={this.handleChange}
                   visible={this.state.isPatientModal}
                   onCloseModal={this.onCloseModal}
+                  onSubmit={this.onSubmit}
                   {...this.state}
                 />
               ) : null
