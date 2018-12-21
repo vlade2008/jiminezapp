@@ -19,6 +19,17 @@ router.get('/get', function (req, res) {
     });
 })
 
+router.get('/:patient_id/getPatientView', function (req,res) {
+    models.Patient.findAll({
+        where : {
+            id: req.params.patient_id
+        },
+        include: [models.Order],
+    }).then( function (data){
+        res.json(data)
+    })
+})
+
 router.post('/getSearch', function (req, res) {
     models.Patient.findAll({
         where: {

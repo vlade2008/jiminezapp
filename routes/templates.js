@@ -4,7 +4,8 @@ var router = express.Router();
 
 router.post('/create', function (req, res) {
     models.Template.create({
-        name: req.body.name
+        name: req.body.name,
+        data: req.body.data,
     }).then(function (data) {
         res.json(data)
     });
@@ -19,7 +20,8 @@ router.get('/get', function (req, res) {
 
 router.post('/update', function (req, res) {
     models.Template.update({
-        name: req.body.name
+        name: req.body.name,
+        data: req.body.data
     }, {
             where: {
                 id: req.body.id

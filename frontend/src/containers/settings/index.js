@@ -3,6 +3,7 @@
 import React from 'react'
 import { Table, Divider, Tag, Card, Input, Button, Tabs, Modal } from 'antd';
 import {  withRouter } from 'react-router-dom';
+import update from 'react-addons-update';
 
 const TabPane = Tabs.TabPane;
 const confirm = Modal.confirm;
@@ -10,12 +11,52 @@ const confirm = Modal.confirm;
 import MedicineForm from './MedicineForm';
 import TemplateForm from './TemplateForm';
 
-class Settings extends React.Component {
 
-  state = {
-    isSettingsModal: false,
-    isTemplateModal: false,
+import { getMedicineList, upsertMedicine, deleteMedicine } from '../../actions/medicine';
+import { getTemplateList, upsertTemplate, deleteTemplate } from '../../actions/template';
+
+class Settings extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isSettingsModal: false,
+      isTemplateModal: false,
+      activeRecord:{},
+      medicineList:[],
+      templateList:[],
+    }
   }
+
+    componentWillMount(){
+      this.fetchMedicineList();
+      this.fetchTemplateList();
+    }
+
+    fetchMedicineList = () => {
+      getMedicineList( (response) => {
+        this.setState({
+          medicineList: response.data || [],
+          activeRecord: {},
+          isSettingsModal: false,
+          isTemplateModal: false,
+
+        })
+      })
+    }
+
+    fetchTemplateList = () =>{
+      getTemplateList( (response) => {
+        this.setState({
+          templateList: response.data || [],
+          activeRecord: {},
+          isSettingsModal: false,
+          isTemplateModal: false,
+
+        })
+      })
+    }
+
 
     onPatientList = (data) => {
       this.props.history.push(`/`);
@@ -33,27 +74,53 @@ class Settings extends React.Component {
       return ()=>{
         this.setState({
           [name]: true,
+          activeRecord:{},
         })
       }
 
     }
 
-    onHandleEdit = (data) =>{
+    handleChange = (name,value) => {
+      const payload = {
+        [name]: value
+      }
+      let newUpdate = update(this.state.activeRecord,{
+        $merge: payload
+      })
+      this.setState({
+        activeRecord:newUpdate
+      })
+    }
+
+    onHandleEdit = (data,name) =>{
       return ()=>{
         this.setState({
-          ...data,
-          isSettingsModal:true,
+          activeRecord:{
+            ...data,
+          },
+          [name]:true,
         })
       }
     }
 
-    onHandleDelete = (data) => {
+    onHandleDelete = (data, name) => {
       return ()=>{
+        let me = this;
         confirm({
           title: 'Do you Want to delete these items?',
           content: data.name,
           onOk() {
-            console.log('OK');
+            if(name === 'medicine'){
+              deleteMedicine(data.id,()=> {
+                me.fetchMedicineList()
+              })
+            }
+            if(name === 'template') {
+              deleteTemplate(data.id, ()=> {
+                me.fetchTemplateList();
+              })
+            }
+
           },
           onCancel() {
             console.log('Cancel');
@@ -62,20 +129,30 @@ class Settings extends React.Component {
       }
     }
 
+    onSubmit = (name) => {
+
+      if(name === 'medicine'){
+        const payload = this.state.activeRecord;
+        upsertMedicine(payload,(response)=>{
+          this.fetchMedicineList()
+        })
+      }
+
+      if(name === 'template'){
+        const payload = this.state.activeRecord;
+        upsertTemplate(payload,(response)=>{
+          this.fetchTemplateList()
+        })
+      }
+
+    }
+
     render(){
-      const dataMedicine = [{
-        key: '1',
-        name: 'Biogesic',
-        id: 1,
-      }, {
-        key: '2',
-        name: 'Paracetamol',
-        id: 2,
-      }, {
-        key: '3',
-        name: 'Amoclav',
-        id: 3,
-      }];
+
+      let dataMedicine = this.state.medicineList.map((item,i)=>{
+        item.key = i
+        return item;
+      })
 
       const columnsMedicine = [{
         title: 'Medicine',
@@ -86,25 +163,17 @@ class Settings extends React.Component {
         key: 'action',
         render: (text, record) => (
           <span>
-            <a onClick={this.onHandleEdit(record)}>Edit</a>
+            <a onClick={this.onHandleEdit(record,'isSettingsModal')}>Edit</a>
             <Divider type="vertical" />
-            <a onClick={this.onHandleDelete(record)}>Delete</a>
+            <a onClick={this.onHandleDelete(record,'medicine')}>Delete</a>
           </span>
         ),
       }];
-      const dataTemplate = [{
-        key: '1',
-        name: 'Biogesic',
-        id: 1,
-      }, {
-        key: '2',
-        name: 'Paracetamol',
-        id: 2,
-      }, {
-        key: '3',
-        name: 'Amoclav',
-        id: 3,
-      }];
+
+      let dataTemplate = this.state.templateList.map((item,i)=>{
+        item.key = i
+        return item;
+      })
 
       const columnsTemplate = [{
         title: 'Order',
@@ -115,16 +184,21 @@ class Settings extends React.Component {
         key: 'action',
         render: (text, record) => (
           <span>
-            <a onClick={this.onHandleEdit(record)}>Edit</a>
+            <a onClick={this.onHandleEdit(record,'isTemplateModal')}>Edit</a>
             <Divider type="vertical" />
-            <a onClick={this.onHandleDelete(record)}>Delete</a>
+            <a onClick={this.onHandleDelete(record,'template')}>Delete</a>
           </span>
         ),
       }];
         return (
           <Card title={
-            <h1>Settings</h1>
+            <div>
+              <Button onClick={this.onPatientList}>Back to Patient</Button>
+              <h1>Settings</h1>
+            </div>
+
           }>
+
           <Tabs type="card" defaultActiveKey="1" >
             <TabPane tab="Medicine" key="1">
               <Button onClick={this.onOpenModal('isSettingsModal')} type="primary">New Medicine</Button>
@@ -141,8 +215,10 @@ class Settings extends React.Component {
           {
             this.state.isSettingsModal ? (
               <MedicineForm
+                onSubmit={this.onSubmit}
                 visible={this.state.isSettingsModal}
                 onCloseModal={this.onCloseModal('isSettingsModal')}
+                handleChange={this.handleChange}
                 {...this.state}
               />
             ) : null
@@ -151,8 +227,10 @@ class Settings extends React.Component {
           {
             this.state.isTemplateModal ? (
               <TemplateForm
+                onSubmit={this.onSubmit}
                 visible={this.state.isTemplateModal}
                 onCloseModal={this.onCloseModal('isTemplateModal')}
+                handleChange={this.handleChange}
                 {...this.state}
               />
             ) : null

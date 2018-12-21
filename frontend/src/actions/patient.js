@@ -14,6 +14,14 @@ export let getSearchPatient = (name,callback = null) => {
     })
 }
 
+export let getPatientView = (id,callback = null) => {
+    get(`/patients/${id}/getPatientView`).then(response => {
+      callback(response)
+    }).catch( function (err){
+      console.log('getPatientList',err);
+    })
+}
+
 export let getPatientList = (callback = null) => {
     get('/patients/get').then(response => {
       callback(response)

@@ -3,6 +3,9 @@
 import React from 'react'
 import { Table, Divider, Tag, Card, Row, Col, Button } from 'antd';
 import {  withRouter } from 'react-router-dom';
+import moment from 'moment';
+
+import { getPatientView } from '../../actions/patient';
 
 import NewOrder from '../neworder'
 
@@ -47,7 +50,25 @@ class PatientView extends React.Component {
 
   state = {
     isOrder: false,
+    activeRecord: {},
   }
+
+  componentWillMount(){
+
+    this.fetchPatientView();
+  }
+
+  fetchPatientView = () => {
+    let patient_id = this.props.match.params.id;
+    getPatientView( patient_id ,(response) => {
+      this.setState({
+        activeRecord: {
+          ...response.data[0],
+        }
+      })
+    })
+  }
+
 
   onNewOrder = () => {
     this.setState({
@@ -60,15 +81,18 @@ class PatientView extends React.Component {
   }
 
     render(){
+
+      const { name, address, birthdate, contact_number, Orders } = this.state.activeRecord;
+
         return (
           <Card>
           <Button type={'dashed'} onClick={this.onBackPatientList}>Got Back Patient List</Button>
           <Row>
             <Col span={24}>
-              <h1 style={{marginBottom:5}}>Christian John Saclao</h1>
-              <h3>23 years old</h3>
-              <h3>Mariveles Dauis Bohol</h3>
-              <h3>09053655760</h3>
+              <h1 style={{marginBottom:5}}>{name}</h1>
+              <h3>{moment().diff(birthdate, 'years')}Years Old</h3>
+              <h3>{address}</h3>
+              <h3>{contact_number}</h3>
             </Col>
           </Row>
           <Row>
@@ -81,7 +105,7 @@ class PatientView extends React.Component {
             {
               this.state.isOrder ? (
                 <NewOrder {...this.props} />
-              ): <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={data} />
+              ): <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={ Orders || []} />
             }
           </Card>
         );

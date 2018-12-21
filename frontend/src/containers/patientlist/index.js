@@ -26,9 +26,6 @@ class PatientList extends React.Component {
     this.onSearchPatientList = _.debounce(this.onSearchPatientList,100)
 
   }
-
-
-
   componentWillMount(){
     this.fetchPatientList();
   }

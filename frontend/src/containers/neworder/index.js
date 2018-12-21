@@ -75,6 +75,10 @@ class NewOrder extends React.Component {
     })
   }
 
+  printAndOrder = () => {
+
+  }
+  
     render(){
         return (
           <Card>
@@ -121,7 +125,7 @@ class NewOrder extends React.Component {
               <br/>
               {
                 this.state.order ? (
-                  <Button type={'primary'}> PRINT AND ORDER</Button>
+                  <Button type={'primary'} onClick={this.printAndOrder}> PRINT AND ORDER</Button>
                 ) : null
               }
 
