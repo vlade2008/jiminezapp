@@ -46,7 +46,10 @@ class NewPatient extends React.Component {
               />
             </FormItem>
             <FormItem label="Birthdate">
-              <DatePicker format="YYYY-MM-DD" value={this.props.activeRecord.birthdate ? moment(this.props.birthdate,'YYYY-MM-DD') : null} onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
+              <DatePicker
+              format="YYYY-MM-DD"
+              value={ this.props.activeRecord.birthdate ? moment(this.props.activeRecord.birthdate) : ''}
+              onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
               />
             </FormItem>
           </Form>
