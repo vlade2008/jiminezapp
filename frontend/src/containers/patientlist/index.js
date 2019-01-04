@@ -68,6 +68,7 @@ class PatientList extends React.Component {
     onOpenModal = () => {
       this.setState({
         isPatientModal: true,
+        activeRecord: {}
       })
     }
 

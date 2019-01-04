@@ -15,16 +15,19 @@ class IVfluidForm extends React.Component {
 
 
     render(){
+
+      const { volume, unitofmeasure, flowrate, flowunit, whentogive, selectmedicine} = this.props.activeRecord;
+
         return (
         <Form layout="inline">
           <FormItem help="Volume">
-            <Input style={{width: 100}} value={this.props.volume} onChange={((e)=>this.props.handleChange('volume',e.target.value))}
+            <Input style={{width: 100}} value={volume} onChange={((e)=>this.props.handleChange('volume',e.target.value))}
             />
           </FormItem>
           <FormItem help="Unit of measure">
             <Select
                showSearch
-               value={this.props.unitofmeasure || ''}
+               value={unitofmeasure || ''}
                style={{ width: 150}}
                onChange={(value)=>this.props.handleChange('unitofmeasure',value)}
               >
@@ -38,13 +41,13 @@ class IVfluidForm extends React.Component {
             </Select>
           </FormItem>
           <FormItem help="Flow Rate">
-            <Input style={{width: 100}} value={this.props.flowrate || ''} onChange={((e)=>this.props.handleChange('flowrate',e.target.value))}
+            <Input style={{width: 100}} value={flowrate || ''} onChange={((e)=>this.props.handleChange('flowrate',e.target.value))}
             />
           </FormItem>
           <FormItem help="Flow Unit">
             <Select
                showSearch
-               value={this.props.flowunit || ''}
+               value={flowunit || ''}
                style={{ width: 150}}
                onChange={(value)=>this.props.handleChange('flowunit',value)}
               >
@@ -59,7 +62,7 @@ class IVfluidForm extends React.Component {
           </FormItem>
           <FormItem help="When to give">
             <Select
-               value={this.props.whentogive || ''}
+               value={whentogive || ''}
                showSearch
                style={{ width: 100}}
                onChange={(value)=>this.props.handleChange('whentogive',value)}
@@ -70,7 +73,7 @@ class IVfluidForm extends React.Component {
           </FormItem>
           <br/>
           {
-            this.props.selectmedicine ? <Button onClick={this.props.onAddOrderIvFluid} type={'primary'}>+Add Medicine</Button> : null
+            selectmedicine ? <Button onClick={this.props.onAddOrderIvFluid} type={'primary'}>+Add Medicine</Button> : null
           }
         </Form>
         );

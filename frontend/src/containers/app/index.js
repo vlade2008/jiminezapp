@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import PatientList from '../patientlist';
 import PatientView from '../patientview';
 import Settings from '../settings';
+import PrintView from '../print'
 
 const App = () => (
   <div style={{ padding: 20 }}>
@@ -13,6 +14,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={PatientList} />
         <Route exact path="/patient/:id" component={PatientView} />
+        <Route exact path="/patient/:id/printview/:orderId" component={PrintView} />
         <Route exact path="/settings" component={Settings} />
       </Switch>
     </main>

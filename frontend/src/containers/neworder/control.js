@@ -135,6 +135,25 @@ const unit_measure = [
   'L',
   'cc',
   'mL',
+  'tab',
+  'sachet',
+  'Tbsp',
+  'tsp',
+  'fl oz',
+  'pt',
+  'gal',
+  'mcg',
+  'mg',
+  'gm',
+  'kg',
+  'oz',
+  'lbs',
+]
+
+const form_unitOptions = [
+  'Tablet',
+  'Sachets',
+  'Bottle',
 ]
 
 export {
@@ -142,4 +161,5 @@ export {
   route,
   flow_unit,
   unit_measure,
+  form_unitOptions,
 }

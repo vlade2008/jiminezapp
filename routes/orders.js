@@ -19,5 +19,15 @@ router.get('/get', function (req, res) {
 
 })
 
+router.get('/:order_id/getOrder', function (req, res) {
+    models.Order.findAll({
+        where: {
+            id: req.params.order_id
+        },
+    }).then(function (data) {
+        res.json(data)
+    })
+})
+
 
 module.exports = router;

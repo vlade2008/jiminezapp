@@ -15,15 +15,18 @@ class TabletForm extends React.Component {
 
 
     render(){
+
+      const { howmany, strength, formunit, doses, whentogive, selectmedicine } = this.props.activeRecord;
+
         return (
         <Form layout="inline">
           <FormItem help="How Many">
-            <Input style={{width: 100}} value={this.props.howmany || ''} onChange={((e)=>this.props.handleChange('howmany',e.target.value))}
+            <Input style={{width: 100}} value={ howmany || ''} onChange={((e)=>this.props.handleChange('howmany',e.target.value))}
             />
           </FormItem>
           <FormItem help="Route">
             <Select
-               value={this.props.route || ''}
+               value={this.props.activeRecord.route || ''}
                showSearch
                style={{ width: 150}}
                onChange={(value)=>this.props.handleChange('route',value)}
@@ -40,14 +43,14 @@ class TabletForm extends React.Component {
           <FormItem help="Strength">
             <Input
               style={{width: 100, marginLeft: 5}}
-              value={this.props.strength || ''}
+              value={strength || ''}
               onChange={((e)=>this.props.handleChange('strength',e.target.value))}
             />
           </FormItem>
           <FormItem help="Form/Unit">
             <Input
               style={{width: 100, marginLeft: 5}}
-              value={this.props.formunit || ''}
+              value={formunit || ''}
               onChange={((e)=>this.props.handleChange('formunit',e.target.value))}
             />
           </FormItem>
@@ -55,7 +58,7 @@ class TabletForm extends React.Component {
           <FormItem help="Frequency">
             <Select
                showSearch
-               value={this.props.frequency || ''}
+               value={this.props.activeRecord.frequency || ''}
                style={{ width: 100,marginLeft: 5 }}
                onChange={(value)=>this.props.handleChange('frequency',value)}
               >
@@ -71,14 +74,14 @@ class TabletForm extends React.Component {
           <FormItem help="Doses">
             <Input
               style={{width: 100, marginLeft: 5}}
-              value={this.props.doses || ''}
+              value={doses || ''}
               onChange={((e)=>this.props.handleChange('doses',e.target.value))}
             />
           </FormItem>
           <FormItem help="When to give">
             <Select
                showSearch
-               value={this.props.whentogive || ''}
+               value={whentogive || ''}
                style={{ width: 100}}
                onChange={(value)=>this.props.handleChange('whentogive',value)}
               >
@@ -88,7 +91,7 @@ class TabletForm extends React.Component {
           </FormItem>
           <br/>
           {
-            this.props.selectmedicine ? <Button onClick={this.props.onAddOrder} type={'primary'}>+Add Medicine</Button> : null
+            selectmedicine ? <Button onClick={this.props.onAddOrder} type={'primary'}>+Add Medicine</Button> : null
           }
         </Form>
         );

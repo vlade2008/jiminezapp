@@ -6,45 +6,12 @@ import {  withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 import { getPatientView } from '../../actions/patient';
+import { upsertOrder } from '../../actions/order';
 
 import NewOrder from '../neworder'
 
-const columns = [{
-  title: 'Date',
-  dataIndex: 'date',
-  key: 'date',
-  width: 200,
-  fixed: 'left',
-}, {
-  title: 'Order',
-  dataIndex: 'order',
-  key: 'order',
-  width: 1200,
-}, {
-  title: 'Action',
-  key: 'action',
-  width: 100,
-  fixed: 'right',
-  render: (text, record) => (
-    <span>
-      <Button type="dashed">Print</Button>
-    </span>
-  ),
-}];
 
-const data = [{
-  key: '1',
-  date: 'September 24,1994',
-  order: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  date: 'September 24,1994',
-  order: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  date: 'September 24,1994',
-  order: 'Button components can contain an Icon. This is done by setting the icon property or placing an Icon component within the Button If you want specific control over the positioning and placement of the Icon, then that should be done by placing the Icon component within the Button rather than using the icon property.Button components can contain an Icon. This is done by setting the icon property or placing an Icon component within the Button If you want specific control over the positioning and placement of the Icon, then that should be done by placing the Icon component within the Button rather than using the icon property.Button components can contain an Icon. This is done by setting the icon property or placing an Icon component within the Button If you want specific control over the positioning and placement of the Icon, then that should be done by placing the Icon component within the Button rather than using the icon property.',
-}];
+
 
 class PatientView extends React.Component {
 
@@ -64,15 +31,24 @@ class PatientView extends React.Component {
       this.setState({
         activeRecord: {
           ...response.data[0],
+          isOrder: false,
         }
       })
     })
   }
 
 
-  onNewOrder = () => {
+  onNewOrderView = () => {
     this.setState({
       isOrder: !this.state.isOrder,
+    })
+  }
+
+  onSumbitOrder = (payload) =>{
+    let patient_id = this.props.match.params.id;
+    payload.patientId = patient_id;
+    upsertOrder(payload, (res)=> {
+      this.props.history.push(`/patient/${patient_id}/printview/${res.data.id}`)
     })
   }
 
@@ -80,9 +56,55 @@ class PatientView extends React.Component {
     this.props.history.push(`/`);
   }
 
+  onPrintView = (orderId,patientId) => {
+    return ()=> {
+      this.props.history.push(`/patient/${patientId}/printview/${orderId}`)
+    }
+  }
+
     render(){
 
+      const columns = [{
+        title: 'Date',
+        key: 'dateOrder',
+        width: 200,
+        fixed: 'left',
+        render: (text, record) => {
+          return (
+            <span>
+              {moment(record.dateOrder).format('YYYY-MM-DD HH:mm a')}
+            </span>
+          )
+        }
+      }, {
+        title: 'Order',
+        key: 'order',
+        width: 1200,
+        render: (text, record) => {
+          let dataOrder = JSON.parse(record.order);
+          let parseOrder = dataOrder.orderArray.map((item,i)=>{
+            return(
+              <pre key={i} style={{fontSize: 16, whiteSpace:'pre-wrap'}}>
+                {i+1}. {item}
+              </pre>
+            )
+          })
+          return parseOrder
+        }
+      }, {
+        title: 'Action',
+        key: 'action',
+        width: 100,
+        fixed: 'right',
+        render: (text, record) => (
+          <span>
+            <Button onClick={this.onPrintView(record.id,this.props.match.params.id)} type="dashed">Print</Button>
+          </span>
+        ),
+      }];
+
       const { name, address, birthdate, contact_number, Orders } = this.state.activeRecord;
+
 
         return (
           <Card>
@@ -97,14 +119,14 @@ class PatientView extends React.Component {
           </Row>
           <Row>
             <Col style={{textAlign:'left',marginBottom:10}} span={4}>
-              <Button onClick={this.onNewOrder} block size="large" type={this.state.isOrder ? 'danger' : 'primary'}>
+              <Button onClick={this.onNewOrderView} block size="large" type={this.state.isOrder ? 'danger' : 'primary'}>
               { this.state.isOrder ? 'View Order' : 'New Order'}
               </Button>
             </Col>
           </Row>
             {
               this.state.isOrder ? (
-                <NewOrder {...this.props} />
+                <NewOrder onSumbitOrder={this.onSumbitOrder} {...this.props} patientBasicInfo={this.state.activeRecord} />
               ): <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={ Orders || []} />
             }
           </Card>
