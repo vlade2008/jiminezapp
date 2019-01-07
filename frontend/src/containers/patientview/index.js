@@ -127,7 +127,7 @@ class PatientView extends React.Component {
             {
               this.state.isOrder ? (
                 <NewOrder onSumbitOrder={this.onSumbitOrder} {...this.props} patientBasicInfo={this.state.activeRecord} />
-              ): <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={ Orders || []} />
+              ): <Table scroll={{ x: 1500, y: 600 }} columns={columns} dataSource={ Orders || []} />
             }
           </Card>
         );

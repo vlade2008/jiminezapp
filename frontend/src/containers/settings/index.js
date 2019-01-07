@@ -205,11 +205,11 @@ class Settings extends React.Component {
               <br/>
               <Table columns={columnsMedicine} dataSource={dataMedicine} />
             </TabPane>
-            <TabPane tab="Template Order" key="2">
+            {/*<TabPane tab="Template Order" key="2">
               <Button onClick={this.onOpenModal('isTemplateModal')} type="primary">New Template</Button>
               <br/>
               <Table columns={columnsTemplate} dataSource={dataTemplate} />
-            </TabPane>
+            </TabPane>*/}
           </Tabs>
 
           {

@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 
 class NewPatient extends React.Component {
   onSumbitVal = () => {
-    const { name } = this.props;
+    const { name } = this.props.activeRecord;
     if(!_.isEmpty(name)){
       this.props.onSubmit();
     }else {

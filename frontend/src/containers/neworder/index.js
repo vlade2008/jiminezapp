@@ -56,17 +56,304 @@ class NewOrder extends React.Component {
     })
   }
 
-  handleChange = (name,value) => {
-    const payload = {
-      [name]: value
+  onPredictiveMedication = (value) => {
+    if(value === 'Amoxicillin 100mg /1 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 2,
+          unitofmeasure: 'mL',
+          frequency: '3x a day',
+          doses: '7 days'
+        }
+      })
     }
-    let newUpdate = update(this.state.activeRecord,{
-      $merge: payload
-    })
-    this.setState({
-      activeRecord:newUpdate
-    })
+    if(value === 'Amoxicillin 250mg/5 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '3x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Co-Amoxiclav 457mg/5 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Cefixime 20mg/1 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Cefixime 100mg/5ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Cefuroxime 250mg/5ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Clarithromycin 125mg/5ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Clarithromycin 250mg/5ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Azithromycin 200mg/5ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '1x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Salbutamol 2mg/5 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '3x a day',
+          doses: '5 days'
+        }
+      })
+    }
+    if(value === 'Salbutamol 2mg/tab'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+            form_unit: 'Tablet',
+          dispense: 15,
+          take: 1,
+          unitofmeasure: 'tab',
+          frequency: '3x a day',
+          doses: '5 days'
+        }
+      })
+    }
+    if(value === 'Procaterol 25 ug/5 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+            form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Procaterol 25ug/tab'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Tablet',
+          take: 1,
+          dispense: 14,
+          unitofmeasure: 'tab',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'Procaterol 50ug/tab'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Tablet',
+          take: 1,
+          dispense: 14,
+          unitofmeasure: 'tab',
+          frequency: '2x a day',
+          doses: '7 days'
+        }
+      })
+    }
+    if(value === 'N-Acetylcisteine 100mg/5 ml'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency: '2x a day',
+          doses: '5 days'
+        }
+      })
+    }
+    if(value === 'N-Acetylcysteine 200mg/sachet'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Satchets',
+          dispense: 14,
+          take:1,
+          plus_take: 10,
+          plus_unitofmeasure: 'mL',
+          unitofmeasure: 'satchet',
+          doses: '5 days',
+          plus_drinks: 'water',
+        }
+      })
+    }
+    if(value === 'N-Acetylcysteine 600mg/tab'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Tablet',
+          dispense: 5,
+          take:1,
+          unitofmeasure: 'tab',
+          doses: '5 days',
+          frequency:'1x a day',
+        }
+      })
+    }
+    if(value === 'Multivitamins plus buclizine syrup'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          brandname:'Biotermin',
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          doses: '2 mos',
+          frequency:'once a day',
+        }
+      })
+    }
+    if(value === 'Multivitamins Drops'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          dispense: 1,
+          unitofmeasure: 'mL',
+          frequency:'once a day',
+        }
+      })
+    }
+    if(value === 'Multivitamins Syrup'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Bottle',
+          unitofmeasure: 'mL',
+          frequency:'1x a day',
+        }
+      })
+    }
+    if(value === 'Montelukast 4 mg'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Tablet',
+          unitofmeasure: 'tab',
+          take: 1,
+          frequency:'1x a day',
+        }
+      })
+    }
+    if(value === 'Montelukast 5 mg'){
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+          form_unit: 'Tablet',
+          unitofmeasure: 'tab',
+          take: 1,
+          frequency:'1x a day',
+        }
+      })
+    }
+
+
+
+
+
   }
+
+
+
+
+  handleChange = (name,value) => {
+
+    if(name === 'selectmedicine') {
+      this.onPredictiveMedication(value)
+    }else {
+      const payload = {
+        [name]: value
+      }
+      let newUpdate = update(this.state.activeRecord,{
+        $merge: payload
+      })
+      this.setState({
+        activeRecord:newUpdate
+      })
+    }
+
+
+  }
+
+
 
   handleChangeOrder = (name,value) => {
     this.setState({
@@ -88,36 +375,13 @@ class NewOrder extends React.Component {
     })
   }
 
-  // onAddOrder = () => {
-  //   const { order } = this.state;
-  //   const { selectmedicine, howmany, route, strength, formunit, frequency,
-  //   doses, whentogive } = this.state.activeRecord;
-  //   const strDoses = doses ? `x${doses} doses` : '';
-  //   const newOrder = `Take ${howmany || ''} ${selectmedicine || ''} ${strength || ''} ${formunit || ''} ${frequency || ''} ${route || ''} ${whentogive || ''} ${strDoses}`
-  //   let mergeoOrder = `${order} \n ${newOrder}`;
-  //   this.setState({
-  //     order: mergeoOrder,
-  //     activeRecord: {}
-  //   });
-  // }
-  //
-  // onAddOrderIvFluid = () => {
-  //   const { order } = this.state;
-  //   const { selectmedicine, volume, unitofmeasure, flowrate, flowunit, whentogive } = this.state.activeRecord;
-  //   const newOrder = `Start IVF at ${volume || ''} ${unitofmeasure || ''} ${selectmedicine || ''} at ${flowrate || ''} ${flowunit || ''} ${whentogive || ''}`
-  //   let mergeoOrder = `${order} \n ${newOrder}`;
-  //   this.setState({
-  //     order: mergeoOrder,
-  //     activeRecord: {}
-  //   })
-  // }
 
   onAddOrder = () => {
       const { order } = this.state;
-      const { take, unitofmeasure, frequency, doses, selectmedicine, form_unit, dispense} = this.state.activeRecord;
+      const { take, unitofmeasure, frequency, doses, selectmedicine, form_unit, dispense,brandname } = this.state.activeRecord;
       const strDoses = doses ? `x ${doses}` : '';
       const strDispense = dispense ? `#${dispense}`: '';
-      const newOrder = `${selectmedicine || ''} \n ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${unitofmeasure || ''} ${frequency || ''} ${strDoses || ''}`
+      const newOrder = `${selectmedicine || ''} \n  (${brandname || 'Brand Name'}) ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${unitofmeasure || ''} ${frequency || ''} ${strDoses || ''}`
       let mergeoOrder = order ? `${order} \n ${newOrder}` : newOrder;
       this.setState({
         order: mergeoOrder,
@@ -127,11 +391,11 @@ class NewOrder extends React.Component {
 
   onAddSatchesOrder = () => {
     const { order } = this.state;
-    const { take, unitofmeasure, frequency, doses, selectmedicine, form_unit, dispense, plus_take, plus_unitofmeasure, plus_drinks} = this.state.activeRecord;
+    const { take, brandname, unitofmeasure, frequency, doses, selectmedicine, form_unit, dispense, plus_take, plus_unitofmeasure, plus_drinks} = this.state.activeRecord;
     const strDoses = doses ? `x ${doses}` : '';
     const strDispense = dispense ? `#${dispense}`: '';
     const strPlus_take = plus_take ? `plus ${plus_take}` : '';
-    const newOrder = `${selectmedicine || ''} \n ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${unitofmeasure || ''} ${strPlus_take}${plus_unitofmeasure} ${plus_drinks}  ${frequency || ''} ${strDoses || ''}`
+    const newOrder = `${selectmedicine || ''} \n (${brandname || 'Brand Name'})  ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${unitofmeasure || ''} ${strPlus_take}${plus_unitofmeasure} ${plus_drinks}  ${frequency || ''} ${strDoses || ''}`
     let mergeoOrder = order ? `${order} \n ${newOrder}` : newOrder;
     this.setState({
       order: mergeoOrder,
@@ -192,7 +456,6 @@ class NewOrder extends React.Component {
 
 
     render(){
-
       const { name, address, birthdate, contact_number } = this.props.patientBasicInfo;
 
 
@@ -235,6 +498,13 @@ class NewOrder extends React.Component {
               {
                 this.state.activeRecord.selectmedicine ? (
                   <Form layout="inline">
+                    <FormItem help="Brand Name">
+                      <Input
+                        style={{width: 150, marginLeft: 5}}
+                        value={this.state.activeRecord.brandname || ''}
+                        onChange={((e)=>this.handleChange('brandname',e.target.value))}
+                      />
+                    </FormItem>
                     <FormItem help="Form/Unit">
                       <Select
                          value={this.state.activeRecord.form_unit || ''}
@@ -273,21 +543,6 @@ class NewOrder extends React.Component {
                   <SachetsForm onAddOrder={this.onAddSatchesOrder}   handleChange={this.handleChange} {...this.state}/>
                 ) : null
               }
-
-
-              {/*
-              <Button style={{marginTop:10}} onClick={this.onTablet} type={this.state.tablet ? 'primary' : '' } >Tablet</Button>
-              <Button style={{marginLeft: 5,marginBottom: 10}} onClick={this.onIVfluid} type={this.state.ivfluid ? 'primary' : ''}>IVFluid</Button>
-              {
-                this.state.tablet ? (
-                  <TabletForm onAddOrder={this.onAddOrder} handleChange={this.handleChange} {...this.state}/ >
-                ) : null
-              }
-              {
-                this.state.ivfluid ? (
-                  <IVfluidForm onAddOrderIvFluid={this.onAddOrderIvFluid} handleChange={this.handleChange} {...this.state} />
-                ) : null
-              }*/}
               <br/>
 
               <h2>Order</h2>
