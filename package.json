@@ -1,6 +1,9 @@
 {
   "name": "jimenezapp",
   "version": "0.0.0",
+  "engines": {
+    "node": "8.12.0"
+  }
   "private": true,
   "scripts": {
     "start": "cross-env nodemon DEBUG=jimenezapp node ./bin/www",
