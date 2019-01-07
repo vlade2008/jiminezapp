@@ -1,6 +1,7 @@
 {
   "private": true,
   "homepage": "https://create-react-app-redux.now.sh",
+  "proxy": "http://localhost:8080",
   "scripts": {
     "deploy": "now && now alias",
     "start": "react-scripts start",
