@@ -40,9 +40,9 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
 })
 
-// app.listen(8080, function () {
-//   console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
-// });
+app.listen(8080, function () {
+  console.error(`Node ${isDev ? 'dev server' : 'cluster worker ' + process.pid}: listening on port ${PORT}`);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
