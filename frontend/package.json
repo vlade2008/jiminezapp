@@ -11,10 +11,10 @@
     "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
-    "prettier": "1.15.3",
-    "react-scripts": "2.1.1"
+    "prettier": "1.15.3"
   },
   "dependencies": {
+    "react-scripts": "2.1.1",
     "antd": "^3.11.0",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
