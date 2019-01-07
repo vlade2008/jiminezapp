@@ -8,7 +8,7 @@ module.exports = {
     port: process.env.DB_PORT
   },
   test: {
-    dialect: "mysql",
+    dialect: "postgres",
     storage: ":memory:"
   },
   production: {
@@ -17,6 +17,6 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOSTNAME,
     port: process.env.DB_PORT,
-    dialect: 'mysql',
+    dialect: 'postgres',
   }
 };
