@@ -26,9 +26,9 @@ class ComponentToPrint extends React.Component {
       })
     }
     return(
-      <div style={{width:800}}>
+      <div>
 
-      <Row style={{marginLeft: 100, marginTop: 200}}>
+      <Row style={{marginLeft: 100, marginTop: 260}}>
         <Col span={12}>
           <p style={{fontSize: 16,fontWeight:'bold'}}>
             Patient: {name}
@@ -53,7 +53,7 @@ class ComponentToPrint extends React.Component {
         </Col>
       </Row>
 
-      <Row style={{padding: 50,marginLeft: 150, marginTop: 50,width: 600}}>
+      <Row style={{padding: 50,marginLeft: 150, marginTop: 0,width: 600}}>
         <Col span={24}>
           {parseOrder}
         </Col>
