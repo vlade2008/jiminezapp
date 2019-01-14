@@ -69,7 +69,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Amoxicillin 250mg/5 ml'){
+    else if(value === 'Amoxicillin 250mg/5 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -81,7 +81,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Co-Amoxiclav 457mg/5 ml'){
+    else if(value === 'Co-Amoxiclav 457mg/5 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -93,7 +93,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Cefixime 20mg/1 ml'){
+    else if(value === 'Cefixime 20mg/1 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -105,7 +105,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Cefixime 100mg/5ml'){
+    else if(value === 'Cefixime 100mg/5ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -117,7 +117,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Cefuroxime 250mg/5ml'){
+    else if(value === 'Cefuroxime 250mg/5ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -129,7 +129,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Clarithromycin 125mg/5ml'){
+    else if(value === 'Clarithromycin 125mg/5ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -141,7 +141,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Clarithromycin 250mg/5ml'){
+    else if(value === 'Clarithromycin 250mg/5ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -153,7 +153,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Azithromycin 200mg/5ml'){
+    else if(value === 'Azithromycin 200mg/5ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -165,7 +165,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Salbutamol 2mg/5 ml'){
+    else if(value === 'Salbutamol 2mg/5 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -177,7 +177,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Salbutamol 2mg/tab'){
+    else if(value === 'Salbutamol 2mg/tab'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -190,7 +190,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Procaterol 25 ug/5 ml'){
+    else if(value === 'Procaterol 25 ug/5 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -202,7 +202,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Procaterol 25ug/tab'){
+    else if(value === 'Procaterol 25ug/tab'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -215,7 +215,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Procaterol 50ug/tab'){
+    else if(value === 'Procaterol 50ug/tab'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -228,7 +228,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'N-Acetylcisteine 100mg/5 ml'){
+    else if(value === 'N-Acetylcisteine 100mg/5 ml'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -240,7 +240,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'N-Acetylcysteine 200mg/sachet'){
+    else if(value === 'N-Acetylcysteine 200mg/sachet'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -255,7 +255,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'N-Acetylcysteine 600mg/tab'){
+    else if(value === 'N-Acetylcysteine 600mg/tab'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -268,7 +268,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Multivitamins plus buclizine syrup'){
+    else if(value === 'Multivitamins plus buclizine syrup'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -281,7 +281,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Multivitamins Drops'){
+    else if(value === 'Multivitamins Drops'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -292,7 +292,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Multivitamins Syrup'){
+    else if(value === 'Multivitamins Syrup'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -302,7 +302,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Montelukast 4 mg'){
+    else if(value === 'Montelukast 4 mg'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -313,7 +313,7 @@ class NewOrder extends React.Component {
         }
       })
     }
-    if(value === 'Montelukast 5 mg'){
+    else if(value === 'Montelukast 5 mg'){
       this.setState({
         activeRecord:{
           selectmedicine: value,
@@ -324,6 +324,14 @@ class NewOrder extends React.Component {
         }
       })
     }
+    else{
+      this.setState({
+        activeRecord:{
+          selectmedicine: value,
+        }
+      })
+    }
+
 
 
 
@@ -533,7 +541,7 @@ class NewOrder extends React.Component {
               }
 
               {
-                this.state.activeRecord.form_unit === 'Tablet' || this.state.activeRecord.form_unit === 'Bottle' ? (
+                this.state.activeRecord.form_unit === 'Tablet' || this.state.activeRecord.form_unit === 'Bottle' || this.state.activeRecord.selectmedicine ? (
                   <TabAndFluidForm onAddOrder={this.onAddOrder}   handleChange={this.handleChange} {...this.state}/>
                 ) : null
               }
