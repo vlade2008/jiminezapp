@@ -1,0 +1,39 @@
+/*eslint-disable */
+
+import React from 'react'
+import {  Select, Card, Row, Col, Button, Input, Form } from 'antd';
+import {  withRouter } from 'react-router-dom';
+
+import { flow_unit, unit_measure } from './control'
+
+const Option = Select.Option;
+const FormItem = Form.Item;
+const { TextArea } = Input;
+
+
+class CustomForm extends React.Component {
+
+
+    render(){
+
+      const { take, sig, selectmedicine } = this.props.activeRecord;
+
+        return (
+        <Form layout="inline">
+          <FormItem help="Take">
+            <Input style={{width: 50}} value={take} onChange={((e)=>this.props.handleChange('take',e.target.value))}
+            />
+          </FormItem>
+          <FormItem help="sig">
+            <Input style={{width: 400}} value={sig || ''} onChange={((e)=>this.props.handleChange('sig',e.target.value))}
+            />
+          </FormItem>
+          <br/>
+          {
+            selectmedicine ? <Button onClick={this.props.onAddOrder} type={'primary'}>+Insert</Button> : null
+          }
+        </Form>
+        );
+    }
+}
+export default CustomForm;

@@ -1,134 +1,224 @@
-const route = [
-  'BUCCAL',
-  'CONJUNC',
-  'CUTAN',
-  'DENTAL',
-  'EL-OSMOS',
-  'E-CERVIC',
-  'E-SINUS',
-  'E-TRACHE',
-  'ENTER',
-  'EPIDUR',
-  'X-AMNI',
-  'X-CORPOR',
-  'HEMO',
-  'INFIL',
-  'INTERSTIT',
-  'I-ABDOM',
-  'I-AMNI',
-  'I-ARTER',
-  'I-ARTIC',
-  'I-BILI',
-  'I-BRONCHI',
-  'I-BURSAL',
-  'I-CARDI',
-  'I-CARTIL',
-  'I-CAUDAL',
-  'I-CAVERN',
-  'I-CAVIT',
-  'I-CERE',
-  'I-CISTERN',
-  'I-CORNE',
-  'I-CORONAL',
-  'I-CORONARY',
-  'I-CORPOR',
-  'I-DERMAL',
-  'I-DISCAL',
-  'I-DUCTAL',
-  'I-DUOD',
-  'I-DURAL',
-  'I-EPIDERM',
-  'I-ESO',
-  'I-GASTRIC',
-  'I-GINGIV',
-  'I-ILE',
-  'I-LESION',
-  'I-LUMIN',
-  'I-LYMPHAT',
-  'I-MEDUL',
-  'I-MENIN',
-  'IM',
-  'I-OCUL',
-  'I-OVAR',
-  'I-PERICARD',
-  'I-PERITON',
-  'I-PLEURAL',
-  'I-PROSTAT',
-  'I-PULMON',
-  'I-SINAL',
-  'I-SPINAL',
-  'I-SYNOV',
-  'I-TENDIN',
-  'I-TESTIC',
-  'IT',
-  'I-THORAC',
-  'I-TUBUL',
-  'I-TUMOR',
-  'I-TYMPAN',
-  'I-UTER',
-  'I-VASC',
-  'IV',
-  'IV BOLUS',
-  'IV DRIP',
-  'I-VENTRIC',
-  'I-VESIC',
-  'I-VITRE',
-  'ION',
-  'IRRIG',
-  'LARYN',
-  'NASAL',
-  'NG',
-  'NA',
-  'OCCLUS',
-  'OPHTHALM',
-  'ORAL',
-  'ORO',
-  'OTHER',
-  'PAREN',
-  'PERCUT',
-  'P-ARTIC',
-  'P-DURAL',
-  'P-NEURAL',
-  'P-ODONT',
-  'RECTAL',
-  'RESPIR',
-  'RETRO',
-  'SOFT TIS',
-  'S-ARACH',
-  'S-CONJUNC',
-  'SC',
-  'SL',
-  'S-MUCOS',
-  'TOPIC',
-  'T-DERMAL',
-  'T-MUCOS',
-  'T-PLACENT',
-  'T-TRACHE',
-  'T-TYMPAN',
-  'UNAS',
-  'UNKNOWN',
-  'URETER',
-  'URETH',
-  'VAGIN',
-  'PO',
-]
+const predictive_medication = [
+  {
+    selectmedicine: 'Amoxicillin 100mg /1 ml',
+    dispense: 1,
+    form_unit: 'Bottle',
+    sig: 'ml 3x a day x 7 days (6am-1pm-8pm)'
+  },
+  {
+    selectmedicine: 'Amoxicillin 250mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 3x a day x 7 days (6am-1pm-8pm)'
+  },
+  {
+    selectmedicine: 'Co-Amoxiclav 457mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Cefixime 20mg/1 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days  (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Cefixime 100mg/5ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days  (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Cefuroxime 250mg/5ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days  (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Cefuroxime 500mg',
+    form_unit: 'Caps',
+    dispense: 1,
+    take: '1',
+    sig: 'cap 2x a day x 7 days  (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Sultamicillin tosylate 750mg/tab',
+    brandname: 'Silgram',
+    form_unit: 'Tablet',
+    dispense: 14,
+    take: '1',
+    sig: '1 tab 2x a day x 7 days   (7am-7pm'
+  },
+  {
+    selectmedicine: 'Clarithromycin 250mg/5ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days  (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Azithromycin 200mg/5ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 1x a day  x 7 days  (8 pm)'
+  },
+  {
+    selectmedicine: 'Salbutamol 2mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 3x a day x 5 days (6am-1pm-8pm)'
+  },
+  {
+    selectmedicine: 'Salbutamol 2mg/tab',
+    form_unit: 'Tablet',
+    dispense: 15,
+    take: 1,
+    sig: 'tab 3x a day x 5 days  (6am-1pm-8pm)'
+  },
+  {
+    selectmedicine: 'Procaterol 25 ug/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Procaterol 25 ug/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 7 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Procaterol 25ug/tab',
+    form_unit: 'Tablet',
+    take: 1,
+    dispense: 14,
+    sig: 'tab 2x a day x 7 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'Procaterol 50ug/tab',
+    form_unit: 'Tablet',
+    take: 1,
+    dispense: 14,
+    sig: 'tab 2x a day x 7 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'N-Acetylcisteine 100mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 5 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'N-Acetylcysteine 200mg/sachet',
+    form_unit: 'Satchets',
+    dispense: 14,
+    take:1,
+    sig: 'sachet plus 10 ml water x 5 days   (7am-7pm)'
+  },
+  {
+    selectmedicine: 'N-Acetylcysteine 600mg/tab',
+    form_unit: 'Tablet',
+    dispense: 5,
+    take:1,
+    sig: 'tab plus 1 oz water 1x a day x 5 days  (8pm)'
+  },
+  {
+    selectmedicine: 'Multivitamins plus buclizine syrup',
+    brandname:'Biotermin',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml once a day x 2 mos   (8pm)'
+  },
+  {
+    selectmedicine: 'Multivitamins Drops',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml once a day   (8pm)'
+  },
+  {
+    selectmedicine: 'Multivitamins Syrup',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 1x a day  (8pm)'
+  },
+  {
+    selectmedicine: 'Montelukast 4 mg',
+    form_unit: 'Tablet',
+    take: 1,
+    sig: 'tab 1x a day   (8pm)'
+  },
+  {
+    selectmedicine: 'Montelukast 5 mg',
+    form_unit: 'Tablet',
+    take: 1,
+    sig: 'tab 1x a day   (8pm)'
+  },
+  {
+    selectmedicine: 'Montelukast 10 mg',
+    form_unit: 'Tablet',
+    unitofmeasure: 'tab',
+    take: 1,
+    sig: 'tab 1x a day   (8pm)'
+  },
+  {
+    selectmedicine: 'Vit. C syrup',
+    form_unit: 'Bottle',
+    sig: 'ml once a day   (8pm)'
+  },
+  {
+    selectmedicine: 'Vit, C Drops',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml once a day (8pm)'
+  },
+  {
+    selectmedicine: 'FeSO4 Drops',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml once a day   (8 pm)'
+  },
+  {
+    selectmedicine: 'Cetirizine 2.75mg/ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml ____ (1x or 2x  a day) x 1 week (8pm or 7am -7pm)'
+  },
+  {
+    selectmedicine: 'Cetirizine 5mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml ____ (1x or 2x  a day) x 1 week (8pm or 7am -7pm)'
+  },
+  {
+    selectmedicine: 'Paracetamol 100 mg/ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml every 4 hours if temp ≥ 38'
+  },
+  {
+    selectmedicine: 'Paracetamol 120 mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml every 4 hours if temp ≥ 38'
+  },
+  {
+    selectmedicine: 'Paracetamol 250 mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml every 4 hours if temp ≥ 38'
+  },
+  {
+    selectmedicine: 'Paracetamol 500 mg',
+    form_unit: 'Tablet',
+    take: 1,
+    sig: 'tablet  every 4 hours if temp ≥ 38'
+  },
+  {
+    selectmedicine: 'Doxofylline  100mg/5 ml',
+    form_unit: 'Bottle',
+    dispense: 1,
+    sig: 'ml 2x a day x 1 week  (7am -7pm)'
+  },
 
-const frequency = [
-'Q4H',
-'Q2H',
-'OD',
-'BID',
-'TID',
-'QID',
-'QHS',
-'Q8H',
-]
-
-const flow_unit = [
-  'gtts/min',
-  'ugtts/min',
-  'fd',
-  'cc/hr',
 ]
 
 const unit_measure = [
@@ -154,12 +244,11 @@ const form_unitOptions = [
   'Tablet',
   'Sachets',
   'Bottle',
+  'Caps',
 ]
 
 export {
-  frequency,
-  route,
-  flow_unit,
   unit_measure,
   form_unitOptions,
+  predictive_medication,
 }
