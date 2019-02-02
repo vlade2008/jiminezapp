@@ -8,6 +8,7 @@ import moment from 'moment'
 
 import { getPatientView } from '../../actions/patient';
 import { getOrderView } from '../../actions/order';
+import printImage from '../../assets/print.png'
 
 class ComponentToPrint extends React.Component {
 
@@ -16,18 +17,27 @@ class ComponentToPrint extends React.Component {
     const { order } = this.props.orderInfo;
     let parseOrder;
     if(order){
+      // let dataOrder = JSON.parse(order);
+      // parseOrder = dataOrder.orderArray.map((item,i)=>{
+      //   return(
+      //     <pre key={i} style={{fontSize: 16, whiteSpace:'pre-wrap'}}>
+      //       {i+1}. {item}
+      //     </pre>
+      //   )
+      // })
+
       let dataOrder = JSON.parse(order);
-      parseOrder = dataOrder.orderArray.map((item,i)=>{
-        return(
-          <pre key={i} style={{fontSize: 16, whiteSpace:'pre-wrap'}}>
-            {i+1}. {item}
+      parseOrder = dataOrder.orderArray.map((item, i) => {
+        return (
+          <pre key={i} style={{ fontSize: 8, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+            {i + 1}. {item}
           </pre>
         )
       })
     }
     return(
       <div>
-
+{/* 
       <Row style={{marginLeft: 100, marginTop: 260}}>
         <Col span={12}>
           <p style={{fontSize: 16,fontWeight:'bold'}}>
@@ -58,7 +68,123 @@ class ComponentToPrint extends React.Component {
           {parseOrder}
         </Col>
 
-      </Row>
+      </Row> */}
+
+        <div style={{
+          position: 'relative',
+        }}>
+
+          <img src={printImage} style={{ position: 'absolute', width: 400, height: 550, left: 0, right: 0 }} />
+
+          <div style={{ marginLeft: 30, marginTop: 135, position: 'absolute', width: 400 }}>
+            <Row>
+              <Col span={12}>
+                <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
+                  Patient: {name}
+                </p>
+              </Col>
+              <Col span={12}>
+                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                  Age: {moment().diff(birthdate, 'years')}
+                </p>
+              </Col>
+            </Row>
+            <Row >
+              <Col span={12} >
+                <p style={{ fontSize: 12, fontWeight: 'bold' }}>
+                  Address: {address}
+                </p>
+              </Col>
+              <Col span={12}>
+                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left' }}>
+                  Date: {moment().format('YYYY-MM-DD')}
+                </p>
+              </Col>
+            </Row>
+
+            <div style={{ marginTop: 40, width: 400, marginLeft: 20 }}>
+              <Row>
+                <Col span={24}>
+                  {parseOrder}
+                </Col>
+              </Row>
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+    )
+  }
+}
+
+
+class ComponentToPrintNoColor extends React.Component {
+
+  render() {
+    const { name, address, birthdate, contact_number } = this.props.patientInfo
+    const { order } = this.props.orderInfo;
+    let parseOrder;
+    if (order) {
+      let dataOrder = JSON.parse(order);
+      parseOrder = dataOrder.orderArray.map((item, i) => {
+        return (
+          <pre key={i} style={{ fontSize: 8, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+            {i + 1}. {item}
+          </pre>
+        )
+      })
+    }
+    return (
+      <div>
+        <div style={{
+          position: 'relative',
+        }}>
+
+          {/* <img src={printImage} style={{ position: 'absolute', width: 400, height: 550, left: 0, right: 0 }} /> */}
+
+          <div style={{ marginLeft: 30, marginTop: 135, position: 'absolute', width: 400 }}>
+            <Row>
+              <Col span={12}>
+                <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
+                  Patient: {name}
+                </p>
+              </Col>
+              <Col span={12}>
+                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                  Age: {moment().diff(birthdate, 'years')}
+                </p>
+              </Col>
+            </Row>
+            <Row >
+              <Col span={12} >
+                <p style={{ fontSize: 12, fontWeight: 'bold' }}>
+                  Address: {address}
+                </p>
+              </Col>
+              <Col span={12}>
+                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left' }}>
+                  Date: {moment().format('YYYY-MM-DD')}
+                </p>
+              </Col>
+            </Row>
+
+            <div style={{ marginTop: 40, width: 400, marginLeft: 20 }}>
+              <Row>
+                <Col span={24}>
+                  {parseOrder}
+                </Col>
+              </Row>
+            </div>
+
+
+
+          </div>
+        </div>
 
 
 
@@ -112,10 +238,15 @@ class PrintView extends React.Component {
             Go Back
           </Button>
           <ReactToPrint
-            trigger={() => <a><Button type="primary">Print this out!</Button></a>}
+            trigger={() => <a><Button type="primary">Print with background!</Button></a>}
             content={() => this.componentRef}
           />
+            <ReactToPrint
+              trigger={() => <a><Button type="primary">Print with no backround!</Button></a>}
+              content={() => this.componentRefnoColor}
+            />
           <ComponentToPrint {...this.state} ref={el => (this.componentRef = el)} />
+            <ComponentToPrintNoColor  {...this.state} ref={el => (this.componentRefnoColor = el)} />
           </div>
         );
     }
