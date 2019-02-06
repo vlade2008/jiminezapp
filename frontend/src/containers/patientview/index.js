@@ -103,7 +103,32 @@ class PatientView extends React.Component {
         ),
       }];
 
-      const { name, address, birthdate, contact_number, Orders } = this.state.activeRecord;
+      const { name, address, birthdate, contact_number, Orders, weight } = this.state.activeRecord;
+
+
+      let duration = moment.duration(moment().diff(birthdate));
+      const formatDuration = (duration) => {
+        let years = duration.years();
+        let months = duration.months();
+        let days = duration.days();
+        let result = '';
+        if (years === 1) {
+          result += 'one year ';
+        } else if (years > 1) {
+          result += years + ' years ';
+        }
+        if (months === 1) {
+          result += 'one month ';
+        } else if (months > 1) {
+          result += months + ' months ';
+        }
+        if (days === 1) {
+          result += 'one day ';
+        } else if (days > 1) {
+          result += days + ' days ';
+        }
+        return result;
+      }
 
 
         return (
@@ -112,9 +137,10 @@ class PatientView extends React.Component {
           <Row>
             <Col span={24}>
               <h1 style={{marginBottom:5}}>{name}</h1>
-              <h3>{moment().diff(birthdate, 'years')}Years Old</h3>
+                <h3>{formatDuration(duration)} old</h3>
               <h3>{address}</h3>
               <h3>{contact_number}</h3>
+                <h3>Weight: {weight}</h3>
             </Col>
           </Row>
           <Row>

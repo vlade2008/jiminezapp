@@ -13,7 +13,7 @@ import printImage from '../../assets/print.png'
 class ComponentToPrint extends React.Component {
 
   render(){
-    const { name , address, birthdate, contact_number} = this.props.patientInfo
+    const { name , address, birthdate, contact_number, weight } = this.props.patientInfo
     const { order } = this.props.orderInfo;
     let parseOrder;
     if(order){
@@ -74,9 +74,9 @@ class ComponentToPrint extends React.Component {
           position: 'relative',
         }}>
 
-          <img src={printImage} style={{ position: 'absolute', width: 400, height: 550, left: 0, right: 0 }} />
+          <img src={printImage} style={{ position: 'absolute', width: 550, height: 750, left: 0, right: 0 }} />
 
-          <div style={{ marginLeft: 30, marginTop: 135, position: 'absolute', width: 400 }}>
+          <div style={{ marginLeft: 40, marginTop: 190, position: 'absolute', width: 550 }}>
             <Row>
               <Col span={12}>
                 <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
@@ -85,7 +85,7 @@ class ComponentToPrint extends React.Component {
               </Col>
               <Col span={12}>
                 <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
-                  Age: {moment().diff(birthdate, 'years')}
+                  Age: {moment().diff(birthdate, 'years')} (Weight: {weight})
                 </p>
               </Col>
             </Row>
@@ -102,7 +102,7 @@ class ComponentToPrint extends React.Component {
               </Col>
             </Row>
 
-            <div style={{ marginTop: 40, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 60, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
@@ -126,7 +126,7 @@ class ComponentToPrint extends React.Component {
 class ComponentToPrintNoColor extends React.Component {
 
   render() {
-    const { name, address, birthdate, contact_number } = this.props.patientInfo
+    const { name, address, birthdate, contact_number, weight } = this.props.patientInfo
     const { order } = this.props.orderInfo;
     let parseOrder;
     if (order) {
@@ -144,10 +144,7 @@ class ComponentToPrintNoColor extends React.Component {
         <div style={{
           position: 'relative',
         }}>
-
-          {/* <img src={printImage} style={{ position: 'absolute', width: 400, height: 550, left: 0, right: 0 }} /> */}
-
-          <div style={{ marginLeft: 30, marginTop: 135, position: 'absolute', width: 400 }}>
+          <div style={{ marginLeft: 40, marginTop: 190, position: 'absolute', width: 550 }}>
             <Row>
               <Col span={12}>
                 <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
@@ -156,7 +153,7 @@ class ComponentToPrintNoColor extends React.Component {
               </Col>
               <Col span={12}>
                 <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
-                  Age: {moment().diff(birthdate, 'years')}
+                  Age: {moment().diff(birthdate, 'years')} (Weight: {weight})
                 </p>
               </Col>
             </Row>
@@ -173,21 +170,15 @@ class ComponentToPrintNoColor extends React.Component {
               </Col>
             </Row>
 
-            <div style={{ marginTop: 40, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 60, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
                 </Col>
               </Row>
             </div>
-
-
-
           </div>
         </div>
-
-
-
       </div>
     )
   }
@@ -246,7 +237,7 @@ class PrintView extends React.Component {
               content={() => this.componentRefnoColor}
             />
           <ComponentToPrint {...this.state} ref={el => (this.componentRef = el)} />
-            <ComponentToPrintNoColor  {...this.state} ref={el => (this.componentRefnoColor = el)} />
+          <ComponentToPrintNoColor  {...this.state} ref={el => (this.componentRefnoColor = el)} />
           </div>
         );
     }

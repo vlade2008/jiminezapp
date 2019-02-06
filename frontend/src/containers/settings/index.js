@@ -198,7 +198,6 @@ class Settings extends React.Component {
             </div>
 
           }>
-
           <Tabs type="card" defaultActiveKey="1" >
             <TabPane tab="Medicine" key="1">
               <Button onClick={this.onOpenModal('isSettingsModal')} type="primary">New Medicine</Button>

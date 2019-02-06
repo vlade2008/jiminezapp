@@ -58,13 +58,15 @@ class NewOrder extends React.Component {
   }
 
   onPredictiveMedication = (value) => {
-
-    let findIndex = _.findIndex(predictive_medication,{
-      'selectmedicine': value
+    let findIndex = _.findIndex(this.state.medicineList,{
+      'name': value
     })
 
+
     if( findIndex != -1 ){
-      let dataPred = predictive_medication[findIndex];
+      let dataPred = _.clone(this.state.medicineList[findIndex]);
+      delete dataPred.name;
+      dataPred.selectmedicine = value
       this.setState({
         activeRecord: {
           ...dataPred
@@ -191,13 +193,13 @@ class NewOrder extends React.Component {
 
 
     render(){
-      const { name, address, birthdate, contact_number } = this.props.patientBasicInfo;
+      const { name, address, birthdate, contact_number, weight } = this.props.patientBasicInfo;
 
 
-      let tempData = this.state.templateList.map((item,i)=>{
-        item.key = i
-        return item;
-      })
+      // let tempData = this.state.templateList.map((item,i)=>{
+      //   item.key = i
+      //   return item;
+      // })
 
         return (
           <Card>
@@ -317,7 +319,7 @@ class NewOrder extends React.Component {
                      </Col>
                      <Col span={12}>
                      <p style={{fontSize: 16,fontWeight:'bold',textAlign:'left',marginBottom: 0}}>
-                       Age: {moment().diff(birthdate, 'years')}
+                          Age: {moment().diff(birthdate, 'years')} (Weight: {weight})
                      </p>
                      </Col>
                    </Row>

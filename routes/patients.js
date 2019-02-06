@@ -8,6 +8,7 @@ router.post('/create', function (req, res) {
         address: req.body.address,
         birthdate: req.body.birthdate,
         contact_number: req.body.contact_number,
+        weight: req.body.weight,
     }).then(function (data) {
         res.json(data)
     });
@@ -56,6 +57,7 @@ router.post('/update', function (req, res) {
         address: req.body.address,
         birthdate: req.body.birthdate,
         contact_number: req.body.contact_number,
+        weight: req.body.weight,
     }, {
             where: {
                 id: req.body.id

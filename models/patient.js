@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     birthdate: DataTypes.DATE,
     contact_number: DataTypes.STRING,
+    weight: DataTypes.STRING,
   });
 
   Patient.associate = function (models) {

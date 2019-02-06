@@ -41,6 +41,10 @@ class NewPatient extends React.Component {
               <Input value={this.props.activeRecord.address} onChange={((e)=>this.props.handleChange('address',e.target.value))}
               />
             </FormItem>
+              <FormItem label="Weight">
+                <Input value={this.props.activeRecord.weight} onChange={((e) => this.props.handleChange('weight', e.target.value))}
+                />
+              </FormItem>
             <FormItem label="Contact Number">
               <Input value={this.props.activeRecord.contact_number} onChange={((e)=>this.props.handleChange('contact_number',e.target.value))}
               />

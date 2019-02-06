@@ -4,7 +4,12 @@ var router = express.Router();
 
 router.post('/create', function (req, res) {
     models.Medicine.create({
-      name: req.body.name
+      name: req.body.name,
+      brandname: req.body.brandname,
+      form_unit: req.body.form_unit,
+      dispense: req.body.dispense,
+      take: req.body.take,
+      sig: req.body.sig,
     }).then(function(data) {
       res.json(data)
     });
@@ -19,7 +24,12 @@ router.get('/get',function (req, res){
 
 router.post('/update', function (req,res){
     models.Medicine.update({
-        name: req.body.name
+        name: req.body.name,
+        brandname: req.body.brandname,
+        form_unit: req.body.form_unit,
+        dispense: req.body.dispense,
+        take: req.body.take,
+        sig: req.body.sig,        
     },{
         where: {
             id: req.body.id
