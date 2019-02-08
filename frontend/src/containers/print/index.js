@@ -35,9 +35,32 @@ class ComponentToPrint extends React.Component {
         )
       })
     }
+    let duration = moment.duration(moment().diff(birthdate));
+    const formatDuration = (duration) => {
+      let years = duration.years();
+      let months = duration.months();
+      let days = duration.days();
+      let result = '';
+      if (years === 1) {
+        result += 'one year ';
+      } else if (years > 1) {
+        result += years + ' years ';
+      }
+      if (months === 1) {
+        result += 'one month ';
+      } else if (months > 1) {
+        result += months + ' months ';
+      }
+      if (days === 1) {
+        result += 'one day ';
+      } else if (days > 1) {
+        result += days + ' days ';
+      }
+      return result;
+    }
     return(
       <div>
-{/* 
+{/*
       <Row style={{marginLeft: 100, marginTop: 260}}>
         <Col span={12}>
           <p style={{fontSize: 16,fontWeight:'bold'}}>
@@ -85,24 +108,32 @@ class ComponentToPrint extends React.Component {
               </Col>
               <Col span={12}>
                 <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
-                  Age: {moment().diff(birthdate, 'years')} (Weight: {weight})
+                  Age: {formatDuration(duration)}
                 </p>
+
               </Col>
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{ fontSize: 12, fontWeight: 'bold' }}>
+                <p style={{fontSize: 12,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left' }}>
+                <p style={{fontSize: 12,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
+                </p>
+              </Col>
+              <Col span={12} >
+              </Col>
+              <Col span={12} >
+                <p style={{fontSize: 12,fontWeight:'bold'}}>
+                  Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 60, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 50, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
@@ -139,6 +170,29 @@ class ComponentToPrintNoColor extends React.Component {
         )
       })
     }
+    let duration = moment.duration(moment().diff(birthdate));
+    const formatDuration = (duration) => {
+      let years = duration.years();
+      let months = duration.months();
+      let days = duration.days();
+      let result = '';
+      if (years === 1) {
+        result += 'one year ';
+      } else if (years > 1) {
+        result += years + ' years ';
+      }
+      if (months === 1) {
+        result += 'one month ';
+      } else if (months > 1) {
+        result += months + ' months ';
+      }
+      if (days === 1) {
+        result += 'one day ';
+      } else if (days > 1) {
+        result += days + ' days ';
+      }
+      return result;
+    }
     return (
       <div>
         <div style={{
@@ -153,24 +207,31 @@ class ComponentToPrintNoColor extends React.Component {
               </Col>
               <Col span={12}>
                 <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
-                  Age: {moment().diff(birthdate, 'years')} (Weight: {weight})
+                  Age: {formatDuration(duration)}
                 </p>
               </Col>
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{ fontSize: 12, fontWeight: 'bold' }}>
+                <p style={{fontSize: 12,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left' }}>
+                <p style={{fontSize: 12,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
+                </p>
+              </Col>
+              <Col span={12} >
+              </Col>
+              <Col span={12} >
+                <p style={{fontSize: 12,fontWeight:'bold'}}>
+                  Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 60, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 50, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
