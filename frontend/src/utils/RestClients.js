@@ -1,11 +1,19 @@
 /*eslint-disable */
 
 import axios from 'axios'
-
-export const baseURL = 'http://localhost:8080'
+import * as tunnel from 'tunnel';
+const agent = tunnel.httpsOverHttp({
+    proxy: {
+        host: 'http://localhost',
+        port: 8080,
+    },
+});
+// export const baseURL = 'http://localhost:8080'
 export const instance = () => {
     let instance = axios.create({
-        baseURL: baseURL,
+        // baseURL: baseURL,
+        httpsAgent: agent,
+        proxy: false,
         timeout: 1000,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
