@@ -9,6 +9,11 @@ router.post('/create', function (req, res) {
         birthdate: req.body.birthdate,
         contact_number: req.body.contact_number,
         weight: req.body.weight,
+        pf: req.body.pf,
+        pf_has: req.body.pf_has,
+        pf_philhealth: req.body.pf_philhealth,
+        pf_philhealth_has: req.body.pf_philhealth_has,
+        fee: req.body.fee,
     }).then(function (data) {
         res.json(data)
     });
@@ -43,6 +48,34 @@ router.post('/getSearch', function (req, res) {
     });
 })
 
+router.post('/getSearchPf', function (req, res) {
+    models.Patient.findAll({
+        where: {
+            $or: [
+              {
+                pf_has: req.body.pf_has
+              },
+              {
+                pf_philhealth_has: req.body.pf_philhealth_has
+              }
+            ],
+            fee: true,
+          }
+    }).then(function (data) {
+        res.json(data)
+    });
+})
+
+router.post('/getSearchPfPhilhealth', function (req, res) {
+    models.Patient.findAll({
+        where: {
+            pf_philhealth_has: req.body.pf_philhealth_has
+        }
+    }).then(function (data) {
+        res.json(data)
+    });
+})
+
 router.get('/getPatientAndOrder', function (req, res){
     models.Patient.findAll({
         include: [models.Order]
@@ -58,6 +91,11 @@ router.post('/update', function (req, res) {
         birthdate: req.body.birthdate,
         contact_number: req.body.contact_number,
         weight: req.body.weight,
+        pf: req.body.pf,
+        pf_has: req.body.pf_has,
+        pf_philhealth: req.body.pf_philhealth,
+        pf_philhealth_has: req.body.pf_philhealth_has,
+        fee: req.body.fee,        
     }, {
             where: {
                 id: req.body.id

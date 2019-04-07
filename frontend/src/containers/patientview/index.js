@@ -5,7 +5,7 @@ import { Table, Divider, Tag, Card, Row, Col, Button } from 'antd';
 import {  withRouter } from 'react-router-dom';
 import moment from 'moment';
 
-import { getPatientView } from '../../actions/patient';
+import { getPatientView, upsertPatient } from '../../actions/patient';
 import { upsertOrder } from '../../actions/order';
 
 import NewOrder from '../neworder'
@@ -62,6 +62,26 @@ class PatientView extends React.Component {
     }
   }
 
+  onHasPfPhilhealth = (isActive) => {
+    return () => {
+      let payload = _.clone(this.state.activeRecord)
+      payload.pf_philhealth_has = isActive
+      upsertPatient(payload, (response) => {
+        this.fetchPatientView()
+      })
+    }
+  }
+
+  onHasPf = (isActive) =>{
+    return () =>{
+      let payload = _.clone(this.state.activeRecord)
+      payload.pf_has = isActive
+      upsertPatient(payload, (response) => {
+        this.fetchPatientView()
+      })
+    }
+  }
+
     render(){
 
       const columns = [{
@@ -103,7 +123,7 @@ class PatientView extends React.Component {
         ),
       }];
 
-      const { name, address, birthdate, contact_number, Orders, weight } = this.state.activeRecord;
+      const { name, address, birthdate, contact_number, Orders, weight, fee, pf, pf_philhealth, pf_has, pf_philhealth_has } = this.state.activeRecord;
 
 
       let duration = moment.duration(moment().diff(birthdate));
@@ -130,18 +150,59 @@ class PatientView extends React.Component {
         return result;
       }
 
+      let btnwidth = '50%'
+
+      let pfPaid;
+      if (pf_has){
+        pfPaid = <Button onClick={this.onHasPf(false)} style={{ backgroundColor: '#87d068', color: 'white', width: btnwidth }}> PAID</Button>
+      }else{
+        pfPaid = <Button onClick={this.onHasPf(true)} style={{ backgroundColor: '#f50', color: 'white', width: btnwidth }} > NOT PAID</Button>
+      }
+
+      let pfPhilhealthPaid;
+      if (pf_philhealth_has) {
+        pfPhilhealthPaid = <Button onClick={this.onHasPfPhilhealth(false)} style={{ backgroundColor: '#87d068', color: 'white', width: btnwidth }}> PAID</Button>
+      } else {
+        pfPhilhealthPaid = <Button onClick={this.onHasPfPhilhealth(true)} style={{ backgroundColor: '#f50', color: 'white', width: btnwidth}} > NOT PAID</Button>
+      }
 
         return (
           <Card>
           <Button type={'dashed'} onClick={this.onBackPatientList}>Got Back Patient List</Button>
-          <Row>
-            <Col span={24}>
+            <Row type="flex" justify="start">
+            <Col span={12}>
               <h1 style={{marginBottom:5}}>{name}</h1>
-                <h3>{formatDuration(duration)} old</h3>
+              <h3>{formatDuration(duration)} old</h3>
               <h3>{address}</h3>
               <h3>{contact_number}</h3>
-                <h3>Weight: {weight}</h3>
+              <h3>Weight: {weight}</h3>
             </Col>
+              <Col span={12}>
+              <Card>
+                  <h1>Professional Fee</h1>
+                  {
+                    fee ? (
+                      <div >
+                        <Divider type="horizontal" />
+                        <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                          <h3>PF: ₱{pf}</h3>
+                          {pfPaid}
+                        </div>
+                        
+                        <Divider type="horizontal" />
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <h3>PF PHILHEALTH: ₱{pf} </h3>
+                          {pfPhilhealthPaid}
+                        </div>
+                        
+                      </div>
+                    ) : 
+                       <h3>No Fee</h3>
+                    
+                  }
+                  
+              </Card>
+              </Col>
           </Row>
           <Row>
             <Col style={{textAlign:'left',marginBottom:10}} span={4}>

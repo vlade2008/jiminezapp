@@ -49,10 +49,18 @@ class NewPatient extends React.Component {
               <Input value={this.props.activeRecord.contact_number} onChange={((e)=>this.props.handleChange('contact_number',e.target.value))}
               />
             </FormItem>
+              <FormItem label="PF">
+                <Input value={this.props.activeRecord.pf} onChange={((e) => this.props.handleChange('pf', e.target.value))}
+                />
+              </FormItem>
+              <FormItem label="PF Philhealth">
+                <Input value={this.props.activeRecord.pf_philhealth} onChange={((e) => this.props.handleChange('pf_philhealth', e.target.value))}
+                />
+              </FormItem>
             <FormItem label="Birthdate">
               <DatePicker
               format="YYYY-MM-DD"
-              value={ this.props.activeRecord.birthdate ? moment(this.props.activeRecord.birthdate) : ''}
+              value={ this.props.activeRecord.birthdate ? moment(this.props.activeRecord.birthdate) : moment()}
               onChange={((date,dateString)=>this.props.handleChange('birthdate',date))}
               />
             </FormItem>

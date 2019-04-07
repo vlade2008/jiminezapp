@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     birthdate: DataTypes.DATE,
     contact_number: DataTypes.STRING,
     weight: DataTypes.STRING,
+    pf: DataTypes.STRING,
+    pf_has: DataTypes.BOOLEAN,
+    pf_philhealth: DataTypes.STRING,
+    pf_philhealth_has: DataTypes.BOOLEAN,
+    fee: DataTypes.BOOLEAN,
   });
 
   Patient.associate = function (models) {
