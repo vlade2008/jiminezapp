@@ -29,7 +29,7 @@ class ComponentToPrint extends React.Component {
       let dataOrder = JSON.parse(order);
       parseOrder = dataOrder.orderArray.map((item, i) => {
         return (
-          <pre key={i} style={{ fontSize: 8, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+          <pre key={i} style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
             {i + 1}. {item}
           </pre>
         )
@@ -131,7 +131,7 @@ class ComponentToPrintNoColor extends React.Component {
       let dataOrder = JSON.parse(order);
       parseOrder = dataOrder.orderArray.map((item, i) => {
         return (
-          <pre key={i} style={{ fontSize: 8, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+          <pre key={i} style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
             {i + 1}. {item}
           </pre>
         )
