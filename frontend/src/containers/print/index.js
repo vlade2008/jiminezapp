@@ -60,54 +60,21 @@ class ComponentToPrint extends React.Component {
     }
     return(
       <div>
-{/*
-      <Row style={{marginLeft: 100, marginTop: 260}}>
-        <Col span={12}>
-          <p style={{fontSize: 16,fontWeight:'bold'}}>
-            Patient: {name}
-          </p>
-        </Col>
-        <Col span={12}>
-        <p style={{fontSize: 16,fontWeight:'bold',textAlign:'left'}}>
-          Age: {moment().diff(birthdate, 'years')}
-        </p>
-        </Col>
-      </Row>
-      <Row style={{marginLeft: 100}}>
-        <Col span={12}>
-          <p style={{fontSize: 16,fontWeight:'bold'}}>
-            Address: {address}
-          </p>
-        </Col>
-        <Col span={12}>
-        <p style={{fontSize: 16,fontWeight:'bold',textAlign:'left'}}>
-          Date: { moment().format('YYYY-MM-DD') }
-        </p>
-        </Col>
-      </Row>
-
-      <Row style={{padding: 50,marginLeft: 150, marginTop: 0,width: 600}}>
-        <Col span={24}>
-          {parseOrder}
-        </Col>
-
-      </Row> */}
-
         <div style={{
           position: 'relative',
         }}>
 
-          <img src={printImage} style={{ position: 'absolute', width: 550, height: 750, left: 0, right: 0 }} />
+          <img src={printImage} style={{ position: 'absolute', width: 480, height: 680, left: 0, right: 0 }} />
 
-          <div style={{ marginLeft: 40, marginTop: 190, position: 'absolute', width: 550 }}>
+          <div style={{ marginLeft: 25, marginTop: 170, position: 'absolute', width: 480 }}>
             <Row>
               <Col span={12}>
-                <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
+                <p style={{ fontSize: 11, marginBottom: 0, fontWeight: 'bold' }}>
                   Patient: {name}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                <p style={{ fontSize: 11, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
                   Age: {formatDuration(duration)}
                 </p>
 
@@ -115,25 +82,25 @@ class ComponentToPrint extends React.Component {
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{fontSize: 12,fontWeight:'bold',marginBottom:0}}>
+                <p style={{fontSize: 11,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{fontSize: 12,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
+                <p style={{fontSize: 11,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
                 </p>
               </Col>
               <Col span={12} >
               </Col>
               <Col span={12} >
-                <p style={{fontSize: 12,fontWeight:'bold'}}>
+                <p style={{fontSize: 11,fontWeight:'bold'}}>
                   Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 50, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 40, width: 400, marginLeft: 30 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
@@ -198,40 +165,40 @@ class ComponentToPrintNoColor extends React.Component {
         <div style={{
           position: 'relative',
         }}>
-          <div style={{ marginLeft: 40, marginTop: 190, position: 'absolute', width: 550 }}>
+          <div style={{ marginLeft: 25, marginTop: 170, position: 'absolute', width: 480 }}>
             <Row>
               <Col span={12}>
-                <p style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold' }}>
+                <p style={{ fontSize: 11, marginBottom: 0, fontWeight: 'bold' }}>
                   Patient: {name}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 12, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                <p style={{ fontSize: 11, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
                   Age: {formatDuration(duration)}
                 </p>
               </Col>
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{fontSize: 12,fontWeight:'bold',marginBottom:0}}>
+                <p style={{fontSize: 11,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{fontSize: 12,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
+                <p style={{fontSize: 11,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
                 </p>
               </Col>
               <Col span={12} >
               </Col>
               <Col span={12} >
-                <p style={{fontSize: 12,fontWeight:'bold'}}>
+                <p style={{fontSize: 11,fontWeight:'bold'}}>
                   Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 50, width: 400, marginLeft: 20 }}>
+            <div style={{ marginTop: 40, width: 400, marginLeft: 30, }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
