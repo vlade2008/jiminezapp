@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     dispense: DataTypes.STRING,
     take: DataTypes.STRING,
     sig: DataTypes.STRING,
+    time: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {

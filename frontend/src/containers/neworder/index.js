@@ -34,6 +34,7 @@ class NewOrder extends React.Component {
       activeRecord: {},
       medicineList:[],
       templateList:[],
+      countOrder:0
     }
   }
   componentWillMount(){
@@ -127,14 +128,17 @@ class NewOrder extends React.Component {
 
 
   onAddOrder = () => {
-      const { order } = this.state;
-      const { take,sig, selectmedicine, form_unit, dispense,brandname } = this.state.activeRecord;
+      const { order, countOrder } = this.state;
+      const { take,sig, selectmedicine, form_unit, dispense,brandname, time } = this.state.activeRecord;
+      let cntOrder = _.clone(countOrder)
       const strDispense = dispense ? `#${dispense}`: '';
-      const newOrder = `${selectmedicine || ''} \n  (${brandname || 'Brand Name'}) ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${sig || ''}`
-      let mergeoOrder = order ? `${order} \n ${newOrder}` : newOrder;
+      const strTime = time ? `\n       ${time}` : ''
+    const newOrder = `${cntOrder+1}. ${selectmedicine || ''} \n  (${brandname || 'Brand Name'}) ${form_unit || ''}${strDispense || ''} \n  Sig. Take ${take || ''} ${sig || ''} ${strTime}`
+      let mergeoOrder = order ? `${order} \n${newOrder}` : newOrder;
       this.setState({
         order: mergeoOrder,
-        activeRecord: {}
+        activeRecord: {},
+        countOrder: cntOrder+1,
       });
   }
 
@@ -371,7 +375,7 @@ class NewOrder extends React.Component {
                             this.state.orderArray.map((item,i)=>{
                               return(
                                 <pre key={i} style={{fontSize: 12,marginBottom: 0,fontWeight: 'bold',whiteSpace:'pre-wrap'}}>
-                                    <a onClick={this.onRemove(item)} ><Icon type="close" style={{fontSize:15}} /></a> {i+1}. {item}
+                                    <a onClick={this.onRemove(item)} ><Icon type="close" style={{fontSize:15}} /></a>{item}
                                 </pre>
                               )
                             })

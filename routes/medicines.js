@@ -10,6 +10,7 @@ router.post('/create', function (req, res) {
       dispense: req.body.dispense,
       take: req.body.take,
       sig: req.body.sig,
+      time: req.body.time,
     }).then(function(data) {
       res.json(data)
     });
@@ -29,7 +30,8 @@ router.post('/update', function (req,res){
         form_unit: req.body.form_unit,
         dispense: req.body.dispense,
         take: req.body.take,
-        sig: req.body.sig,        
+        sig: req.body.sig,   
+        time: req.body.time,     
     },{
         where: {
             id: req.body.id

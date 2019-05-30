@@ -16,7 +16,7 @@ class CustomForm extends React.Component {
 
     render(){
 
-      const { take, sig, selectmedicine } = this.props.activeRecord;
+      const { take, sig, selectmedicine, time } = this.props.activeRecord;
 
         return (
         <Form layout="inline">
@@ -25,7 +25,11 @@ class CustomForm extends React.Component {
             />
           </FormItem>
           <FormItem help="sig">
-            <Input style={{width: 400}} value={sig || ''} onChange={((e)=>this.props.handleChange('sig',e.target.value))}
+            <Input style={{width: 300}} value={sig || ''} onChange={((e)=>this.props.handleChange('sig',e.target.value))}
+            />
+          </FormItem>
+          <FormItem help="Time">
+            <Input style={{width: 200}} value={time || ''} onChange={((e)=>this.props.handleChange('time',e.target.value))}
             />
           </FormItem>
           <br/>

@@ -105,7 +105,12 @@ class PatientView extends React.Component {
           let parseOrder = dataOrder.orderArray.map((item,i)=>{
             return(
               <pre key={i} style={{fontSize: 16, whiteSpace:'pre-wrap'}}>
-                {i+1}. {item}
+                {
+                  !_.isEmpty(item) && item[0] === '1' ? 
+                    `${item}`:
+                    `${i + 1}. ${item}`
+                }
+                
               </pre>
             )
           })

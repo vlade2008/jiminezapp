@@ -29,8 +29,8 @@ class ComponentToPrint extends React.Component {
       let dataOrder = JSON.parse(order);
       parseOrder = dataOrder.orderArray.map((item, i) => {
         return (
-          <pre key={i} style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
-            {i + 1}. {item}
+          <pre key={i} style={{ fontSize: 14, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+            {item}
           </pre>
         )
       })
@@ -64,17 +64,17 @@ class ComponentToPrint extends React.Component {
           position: 'relative',
         }}>
 
-          <img src={printImage} style={{ position: 'absolute', width: 480, height: 680, left: 0, right: 0 }} />
+          <img src={printImage} style={{ position: 'absolute', width: 520, height: 750, left: 0, right: 0 }} />
 
-          <div style={{ marginLeft: 25, marginTop: 170, position: 'absolute', width: 480 }}>
+          <div style={{ marginLeft: 50, marginTop: 185, position: 'absolute', width: 480 }}>
             <Row>
               <Col span={12}>
-                <p style={{ fontSize: 11, marginBottom: 0, fontWeight: 'bold' }}>
+                <p style={{ fontSize: 14, marginBottom: 0, fontWeight: 'bold' }}>
                   Patient: {name}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 11, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                <p style={{ fontSize: 14, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
                   Age: {formatDuration(duration)}
                 </p>
 
@@ -82,25 +82,25 @@ class ComponentToPrint extends React.Component {
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{fontSize: 11,fontWeight:'bold',marginBottom:0}}>
+                <p style={{fontSize: 14,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{fontSize: 11,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
+                <p style={{fontSize: 14,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
                 </p>
               </Col>
               <Col span={12} >
               </Col>
               <Col span={12} >
-                <p style={{fontSize: 11,fontWeight:'bold'}}>
+                <p style={{fontSize: 14,fontWeight:'bold'}}>
                   Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 40, width: 400, marginLeft: 30 }}>
+            <div style={{ marginTop: 35, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}
@@ -131,8 +131,8 @@ class ComponentToPrintNoColor extends React.Component {
       let dataOrder = JSON.parse(order);
       parseOrder = dataOrder.orderArray.map((item, i) => {
         return (
-          <pre key={i} style={{ fontSize: 12, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
-            {i + 1}. {item}
+          <pre key={i} style={{ fontSize: 14, marginBottom: 0, fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+            {item}
           </pre>
         )
       })
@@ -165,40 +165,40 @@ class ComponentToPrintNoColor extends React.Component {
         <div style={{
           position: 'relative',
         }}>
-          <div style={{ marginLeft: 25, marginTop: 170, position: 'absolute', width: 480 }}>
+          <div style={{ marginLeft: 50, marginTop: 185, position: 'absolute', width: 480 }}>
             <Row>
               <Col span={12}>
-                <p style={{ fontSize: 11, marginBottom: 0, fontWeight: 'bold' }}>
+                <p style={{ fontSize: 14, marginBottom: 0, fontWeight: 'bold' }}>
                   Patient: {name}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{ fontSize: 11, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
+                <p style={{ fontSize: 14, fontWeight: 'bold', textAlign: 'left', marginBottom: 0 }}>
                   Age: {formatDuration(duration)}
                 </p>
               </Col>
             </Row>
             <Row >
               <Col span={12} >
-                <p style={{fontSize: 11,fontWeight:'bold',marginBottom:0}}>
+                <p style={{fontSize: 14,fontWeight:'bold',marginBottom:0}}>
                   Address: {address}
                 </p>
               </Col>
               <Col span={12}>
-                <p style={{fontSize: 11,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
+                <p style={{fontSize: 14,fontWeight:'bold',textAlign:'left',marginBottom:0}}>
                   Date: {moment().format('YYYY-MM-DD')}
                 </p>
               </Col>
               <Col span={12} >
               </Col>
               <Col span={12} >
-                <p style={{fontSize: 11,fontWeight:'bold'}}>
+                <p style={{fontSize: 14,fontWeight:'bold'}}>
                   Weight: {weight}
                 </p>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 40, width: 400, marginLeft: 30, }}>
+            <div style={{ marginTop: 35, width: 400, marginLeft: 20 }}>
               <Row>
                 <Col span={24}>
                   {parseOrder}

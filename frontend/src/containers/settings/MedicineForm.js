@@ -73,6 +73,10 @@ class MedicineForm extends React.Component {
                 <Input value={this.props.activeRecord.sig} onChange={((e) => this.props.handleChange('sig', e.target.value))}
                 />
               </FormItem>
+              <FormItem label="Time">
+                <Input value={this.props.activeRecord.time} onChange={((e) => this.props.handleChange('time', e.target.value))}
+                />
+              </FormItem>
           </Form>
 
           </Modal>
